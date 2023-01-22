@@ -36,4 +36,5 @@ public boolean compareNumber(int guess)
     {
         this.randomNum = randomNum;
     }
+    
 }//Numbers class ends 
