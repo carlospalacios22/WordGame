@@ -15,5 +15,5 @@ public class GamePlay {
         game.randomNumber = new Numbers();
         game.randomNumber.generateNumber();
 
-        System.out.print("What is your name? ");
+        System.out.print("What is your first name? ");
         String firstName = sc.nextLine();
