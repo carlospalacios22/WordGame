@@ -26,3 +26,14 @@ public boolean compareNumber(int guess)
             return false;
         }
     }
+
+        public int getRandomNum() 
+    {
+        return randomNum;
+    }
+
+    public void setRandomNum(int randomNum) 
+    {
+        this.randomNum = randomNum;
+    }
+}//Numbers class ends 
