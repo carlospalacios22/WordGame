@@ -19,34 +19,42 @@ public class GamePlay {
         
         // Prompt for the last name
         //if user enters y then get the last name.
+         System.out.print("Would you like to enter a last name? (y/n) ");
+        String lastNameResponse = sc.nextLine();
         if (lastNameResponse.equalsIgnoreCase("y")) {
             System.out.print("What is your last name? ");
             String lastName = sc.nextLine();
-            game.player = new Person(firstName, lastName);
+            game.player = new Players(firstName, lastName, 0.0);
         } else {
-            game.player = new Person(firstName);
+            game.player = new Players(firstName, 0.0);
         }
         
+        Turn turn = new Turn();
+
+        // loop that allows the player to keep playing or stop
+        boolean keepPlaying = true;
+        while (keepPlaying) {
             boolean correctGuess = false;
-        
-   //added loop until the number is gussed corrrectly 
-        while (!correctGuess) 
-        {
-            System.out.print(game.player.getFirstName() + ", please enter a number to  guess my number between 0 - 100: ");
-            int guess = sc.nextInt();
-            sc.nextLine();
-            correctGuess = game.randomNumber.compareNumber(guess);
-     
-        }//end of guess loop
-        
-        
-        
-    }// end of void main
-    
-    
-}//end of Gameplay
-    
-    
+            while (!correctGuess) {
+                correctGuess = turn.takeTurn(game.player);
+            }
+            
+            System.out.print("Do you want to keep playing? (y/n) ");
+            String response = sc.nextLine();
+            if (response.equalsIgnoreCase("n")) {
+                keepPlaying = false;
+            } else {
+                game.host.randomizeNum();
+            }
+        }//end of game loop
+
+
+    }//end of void main
+
+
+
+}//Numbers class ends 
+
    
     
     
