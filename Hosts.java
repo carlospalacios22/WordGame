@@ -14,3 +14,19 @@ public class Hosts {
         this.name = name;
         this.numbers = new Numbers();
     }
+
+    public void generateNumber() {
+        this.numbers.generateNumber();
+    }
+  
+    public int getRandomNumber() {
+        return this.numbers.getRandomNumber();
+    }
+  
+    public String getName() {
+        return this.name;
+    }
+  
+    public void setName(String name) {
+        this.name = name;
+    }
