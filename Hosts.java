@@ -30,3 +30,12 @@ public class Hosts {
     public void setName(String name) {
         this.name = name;
     }
+public Hosts() {
+        // constructor left empty on purpose to resolve unknownissue..
+    }
+  
+    
+}//end of Hosts class
+
+
+
