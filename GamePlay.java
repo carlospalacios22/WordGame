@@ -20,6 +20,7 @@ public class GamePlay {   //Gameplay class Start
           //Prompt for the last name if "no" then it will not get the last name 
         System.out.print("Would you like to enter a last name? (y/n) ");
         String lastNameResponse = sc.nextLine();
+        //if user enters y then get the last name.
         if (lastNameResponse.equalsIgnoreCase("y")) {
             System.out.print("What is your last name? ");
             String lastName = sc.nextLine();
