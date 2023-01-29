@@ -5,7 +5,7 @@ import java.util.Random;
 
 //////////////////////////////////////////
 
-
+//start of Numbers class
 public class Numbers {
     private static int randomNum;
 
@@ -46,4 +46,6 @@ public class Numbers {
     public int getRandomNumber() {
         return 0;
     }
-}
+    
+    
+}//end of numbers class
