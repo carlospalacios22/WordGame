@@ -17,9 +17,9 @@ public class GamePlay {
         System.out.print("What is your first name? ");
         String firstName = sc.nextLine();
         
-        // Prompt for the last name
+           // Prompt for the last name
         //if user enters y then get the last name.
-         System.out.print("Would you like to enter a last name? (y/n) ");
+        System.out.print("Would you like to enter a last name? (y/n) ");
         String lastNameResponse = sc.nextLine();
         if (lastNameResponse.equalsIgnoreCase("y")) {
             System.out.print("What is your last name? ");
@@ -54,7 +54,3 @@ public class GamePlay {
 
 
 }//Numbers class ends 
-
-   
-    
-    
