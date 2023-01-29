@@ -1,10 +1,9 @@
 //Import Scanner library for input/outputs
 import java.util.Scanner;
 
-//Main Class for the game
-//Gameplay class Start
 
-public class GamePlay {
+
+public class GamePlay {   //Gameplay class Start
     private Person player;
     private Numbers randomNumber;
 
