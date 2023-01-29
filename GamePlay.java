@@ -2,7 +2,7 @@
 //Import Scanner library for input/outputs
 import java.util.Scanner;
 
-
+//Start of GamePlay
 public class GamePlay {
     private Players player;
     private Hosts host;
