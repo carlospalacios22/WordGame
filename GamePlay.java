@@ -1,25 +1,23 @@
+
 //Import Scanner library for input/outputs
 import java.util.Scanner;
 
 
-
-public class GamePlay {   //Gameplay class Start
-    private Person player;
-    private Numbers randomNumber;
+public class GamePlay {
+    private Players player;
+    private Hosts host;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         GamePlay game = new GamePlay();
 
-        game.randomNumber = new Numbers();
-        game.randomNumber.generateNumber();
+        game.host = new Hosts();
+        game.host.randomizeNum();
 
         System.out.print("What is your first name? ");
         String firstName = sc.nextLine();
         
-          //Prompt for the last name if "no" then it will not get the last name 
-        System.out.print("Would you like to enter a last name? (y/n) ");
-        String lastNameResponse = sc.nextLine();
+        // Prompt for the last name
         //if user enters y then get the last name.
         if (lastNameResponse.equalsIgnoreCase("y")) {
             System.out.print("What is your last name? ");
