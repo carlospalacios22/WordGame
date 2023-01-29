@@ -30,7 +30,7 @@ public class GamePlay {   //Gameplay class Start
         
             boolean correctGuess = false;
         
-        //added loop until the number is gussed corrrectly 
+   //added loop until the number is gussed corrrectly 
         while (!correctGuess) 
         {
             System.out.print(game.player.getFirstName() + ", please enter a number to  guess my number between 0 - 100: ");
@@ -38,7 +38,7 @@ public class GamePlay {   //Gameplay class Start
             sc.nextLine();
             correctGuess = game.randomNumber.compareNumber(guess);
      
-        }
+        }//end of guess loop
         
         
         
