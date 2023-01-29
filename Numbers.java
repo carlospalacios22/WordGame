@@ -4,12 +4,10 @@ import java.util.Random;
 
 
 //////////////////////////////////////////
-//using the Random library
-import java.util.Random;
 
-//Class Numbers start
+
 public class Numbers {
-    private int randomNum;
+    private static int randomNum;
 
     public void generateNumber() 
     {
@@ -17,8 +15,7 @@ public class Numbers {
         randomNum = rand.nextInt(101);
     }
 
-  //Boolean for the number guess inputs using IF/ELSE
-public boolean compareNumber(int guess) 
+    public boolean compareNumber(int guess) 
     {
         if (randomNum == guess) {
             System.out.println("Congratulations, you guessed the number!");
@@ -32,14 +29,21 @@ public boolean compareNumber(int guess)
         }
     }
 
-        public int getRandomNum() 
+    public static int getRandomNum() 
     {
         return randomNum;
     }
 
-    public void setRandomNum(int randomNum) 
+    public static void setRandomNum(int randomNum) 
     {
-        this.randomNum = randomNum;
+        Numbers.randomNum = randomNum;
     }
-    
-}//Numbers class ends 
+
+    public int getNumToGuess() {
+        return randomNum;
+    }
+
+    public int getRandomNumber() {
+        return 0;
+    }
+}
