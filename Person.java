@@ -5,7 +5,7 @@ public class Person {
     // private variables 
     private String firstName;
     private String lastName;
-
+    private int money;  //may need to remove
   
   //Create two overloaded constructors for the Person class
     // First constructor
@@ -45,7 +45,13 @@ public class Person {
     }
     
   
-  
+    public void increaseMoney(int amount) {
+        money += amount;
+    }
+    
+    public void decreaseMoney(int amount) {
+        money -= amount;
+    }
  
 
 }// end of person class
