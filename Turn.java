@@ -1,3 +1,7 @@
+
+
+
+
 //Import Scanner library for input/outputs
 import java.util.Scanner;
 
@@ -13,13 +17,13 @@ public class Turn {
         number.generateNumber();
         
         Scanner input = new Scanner(System.in);
-        System.out.println(player.getFirstName() + ", please enter your guess: ");
+        System.out.println(player.getFirstName() + ", please enter a number to  guess my number between 0 - 100: ");
         int guess = input.nextInt();
         
         boolean correctGuess = number.compareNumber(guess);
-        int winAmount = 100;
-        int loseAmount = 50;
-        
+        int winAmount = 500;
+        int loseAmount = 200;
+        //
         if (correctGuess) {
             player.increaseMoney(winAmount);
             System.out.println("Congratulations " + player.getFirstName() + "! You won " + winAmount + " dollars.");
