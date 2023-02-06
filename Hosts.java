@@ -1,7 +1,8 @@
 
 
+/*comment all the code 
 
-//start of Hosts class
+
 public class Hosts {
     private String name;
     private Numbers numbers;
@@ -36,3 +37,5 @@ public Hosts() {
   
     
 }//end of Hosts class
+
+*/
