@@ -1,6 +1,6 @@
 
 
-
+/* 
 
 public class Players extends Person {
     private double money;
@@ -39,4 +39,4 @@ public class Players extends Person {
       return "Bat Man says " + super.getFirstName() + " " + super.getLastName() + ", Money: $" + money;
     }
   }
-  
+  */
