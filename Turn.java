@@ -1,20 +1,14 @@
 
-
-
-
+/* 
 //Import Scanner library for input/outputs
 import java.util.Scanner;
-
-
-
-
 
 
 public class Turn {
     
     public boolean takeTurn(Person player) {
         Numbers number = new Numbers();
-        number.generateNumber();
+      
         
         Scanner input = new Scanner(System.in);
         System.out.println(player.getFirstName() + ", please enter a number to  guess my number between 0 - 100: ");
@@ -42,3 +36,5 @@ public class Turn {
     
     
 }
+
+*/
