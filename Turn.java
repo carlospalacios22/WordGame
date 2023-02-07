@@ -1,40 +1,24 @@
-
-/* 
-//Import Scanner library for input/outputs
 import java.util.Scanner;
 
-
 public class Turn {
-    
-    public boolean takeTurn(Person player) {
-        Numbers number = new Numbers();
-      
-        
-        Scanner input = new Scanner(System.in);
-        System.out.println(player.getFirstName() + ", please enter a number to  guess my number between 0 - 100: ");
-        int guess = input.nextInt();
-        
-        boolean correctGuess = number.compareNumber(guess);
-        int winAmount = 500;
-        int loseAmount = 200;
-        //
-        if (correctGuess) {
-            player.increaseMoney(winAmount);
-            System.out.println("Congratulations " + player.getFirstName() + "! You won " + winAmount + " dollars.");
-        } else {
-            player.decreaseMoney(loseAmount);
-            System.out.println("Sorry " + player.getFirstName() + ", your guess was incorrect. You lost " + loseAmount + " dollars.");
-            if (guess > number.getNumToGuess()) {
-                System.out.println("Your guess was too high.");
-            } else {
-                System.out.println("Your guess was too low.");
-            }
-        }
-        System.out.println(player.toString());
-        return correctGuess;
-    }
-    
-    
-}
+  public boolean takeTurn(Players player, Hosts host) {
 
-*/
+    
+      System.out.println("Rich Uncle Pennybags: " + player.getFirstName() + ", enter a guess for the random number between 0 and 100.");
+      Scanner input = new Scanner(System.in);
+      int guess = input.nextInt();
+      Numbers numbers = new Numbers();
+      boolean correctGuess = numbers.compareNumber(guess);
+      if (correctGuess) {
+          player.setMoney(player.getMoney() + 500);
+          System.out.println("Congratulations, " + player.getFirstName() + "! You are the winner.");
+        
+          return true;
+      } else {
+          player.setMoney(player.getMoney() - 200);
+         
+          System.out.println("Your guess was too " + (guess > Numbers.getRandomNum() ? "high." : "low."));
+          return false;
+      }
+  }
+}
