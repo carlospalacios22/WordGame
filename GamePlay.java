@@ -1,42 +1,45 @@
 import java.util.Scanner;
 
 
-//Begin of class GamePlay
+// Start of the GamePlay class
 public class GamePlay {
-  private Person player;
-  
+    private static Players player;
+    private static Turn turn;
 
-  // Begin of main
+    public static void main(String[] args) {
+        // Start of the main method
+        Scanner input = new Scanner(System.in);
+    
+        Hosts host = new Hosts(null);
+   
+        host.randomizeNum();
+        String answer;
+        
+        do {
+            System.out.print("Enter your name: ");
+            String firstName = input.next();
+            System.out.print("Would you like to enter a last name? (yes/no): ");
+            answer = input.next();
+            if (answer.equalsIgnoreCase("yes")) {
+                System.out.print("Enter your last name: ");
+                String lastName = input.next();
+                player = new Players(firstName, lastName);
+            } else {
+                player = new Players(firstName);
+            }
+            turn = new Turn();
+            while (!turn.takeTurn(player, host)) {
+                System.out.println(player.toString());
+            }
+            System.out.println(player.toString());
+            System.out.print("Would you like to play again? (yes/no): ");
+            answer = input.next();
+            if (answer.equalsIgnoreCase("yes")) {
+                host.randomizeNum();
+            }
+        } while (answer.equalsIgnoreCase("yes"));
+        input.close();
 
-  public static void main(String[] args) {
-    Scanner input = new Scanner(System.in);
-    GamePlay game = new GamePlay();
-    
-    System.out.print("Enter your first name: ");
-    String firstName = input.nextLine();
-    
-    System.out.print("Would you like to enter a last name? (y/n): ");
-    String lastNameResponse = input.nextLine();
-    
-    if (lastNameResponse.equalsIgnoreCase("y")) {
-      System.out.print("Enter your last name: ");
-      String lastName = input.nextLine();
-      game.player = new Person(firstName, lastName);
-    } else {
-      game.player = new Person(firstName);
-    }
-    
-    Numbers numbers = new Numbers();
-    numbers.generateNumber();
-    
-    System.out.println("Hi " + game.player.getFirstName() + "! Let's play a game. I'm thinking of a number between 0 and 100.");
-    boolean correctGuess = false;
-    while (!correctGuess) {
-      System.out.print("What's your guess, " + game.player.getFirstName() + "? ");
-      int guess = input.nextInt();
-      correctGuess = numbers.compareNumber(guess);
 
-
-    }// End of while loop
-  }// End of main
-}// End of GamePlay
+    }// End of the main method
+}// End of the GamePlay class
