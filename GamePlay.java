@@ -9,13 +9,15 @@ public class GamePlay {
     public static void main(String[] args) {
         // Start of the main method
         Scanner input = new Scanner(System.in);
-    
+        
+        // Create a new Hosts object
         Hosts host = new Hosts(null);
-   
+        // Call the randomizeNum method
         host.randomizeNum();
         String answer;
-        
+        // Start of the 1st loop
         do {
+            // Ask the user for their name
             System.out.print("Enter your name: ");
             String firstName = input.next();
             System.out.print("Would you like to enter a last name? (yes/no): ");
