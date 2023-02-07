@@ -4,10 +4,11 @@ import java.util.Scanner;
 public class Turn {
   public boolean takeTurn(Players player, Hosts host) {
 
-    
+        // Ask the user for a guess
       System.out.println("Rich Uncle Pennybags: " + player.getFirstName() + ", enter a guess for the random number between 0 and 100.");
       Scanner input = new Scanner(System.in);
       int guess = input.nextInt();
+        // Create a new Numbers object
       Numbers numbers = new Numbers();
       // Call the compareNumber method
       boolean correctGuess = numbers.compareNumber(guess);
@@ -17,8 +18,8 @@ public class Turn {
           System.out.println("Congratulations, " + player.getFirstName() + "! You are the winner.");
         
           return true;
+      } // end of if statement
 
-      } 
       // If the guess is incorrect, subtract $200 from the player's money
       else {
           player.setMoney(player.getMoney() - 200);
