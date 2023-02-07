@@ -1,5 +1,5 @@
 
-
+//reduced the code from lesson3 to be more simple.
 
 
 
@@ -8,10 +8,14 @@ public class Hosts extends Person {
   public Hosts(String firstName) {
     super(firstName);
     
-  }
+  }// end of Hosts constructor
+
+
 // randomizeNum method by calling the generateNumber method from the Numbers class
   public void randomizeNum() {
       Numbers numbers = new Numbers();
       numbers.generateNumber();
-  }
-}
+  }// end of randomizeNum method
+
+
+}// end of Hosts class
