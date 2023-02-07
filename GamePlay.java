@@ -31,16 +31,22 @@ public class GamePlay {
             } else {
                 player = new Players(firstName);
             }
+            // Create a new Turn object
             turn = new Turn();
+
+            // Start of the 2nd loop to repeat the game
             while (!turn.takeTurn(player, host)) {
                 System.out.println(player.toString());
             }
+            // ask the user if they want to play again
             System.out.println(player.toString());
             System.out.print("Would you like to play again? (yes/no): ");
             answer = input.next();
             if (answer.equalsIgnoreCase("yes")) {
                 host.randomizeNum();
             }
+            
+            // only loop if the user enters yes
         } while (answer.equalsIgnoreCase("yes"));
         input.close();
 
