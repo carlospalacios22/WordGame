@@ -23,12 +23,16 @@ public class Players extends Person {
         super(firstName);
         this.money = 1000;
     }
-//have the initial money be shown in the toString method not working
+
 
     @Override
     public String toString() {
         return getFirstName() + " " + getLastName() + " now has $" + money + " dollars.";
     }// end of toString method
+
+    public String getCurrentUserName() {
+        return null;
+    }
 
     
 }// end of Players class
