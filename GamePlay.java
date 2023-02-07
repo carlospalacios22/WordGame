@@ -20,8 +20,10 @@ public class GamePlay {
             // Ask the user for their name
             System.out.print("Enter your name: ");
             String firstName = input.next();
+            // Ask the user if they want to enter a last name
             System.out.print("Would you like to enter a last name? (yes/no): ");
             answer = input.next();
+            // If the user enters yes, ask for their last name
             if (answer.equalsIgnoreCase("yes")) {
                 System.out.print("Enter your last name: ");
                 String lastName = input.next();
