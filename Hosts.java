@@ -5,7 +5,7 @@
 
 // extends Person class to Hosts class
 public class Hosts extends Person {
-  public Hosts(String firstName) {
+  public Hosts() {
     super(firstName);
     
   }// end of Hosts constructor
@@ -16,6 +16,14 @@ public class Hosts extends Person {
       Numbers numbers = new Numbers();
       numbers.generateNumber();
   }// end of randomizeNum method
+
+
+public String getIntro(String firstName) {
+
+   
+    return "It's your turn, " + firstName;
+}
+
 
 
 }// end of Hosts class
