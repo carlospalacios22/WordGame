@@ -32,5 +32,7 @@ public class Person {
 // added a toString method to return the last name
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-}
+
+        
+    }// end of setLastName method
+}// end of Person class
