@@ -1,5 +1,6 @@
 public class Person {
 
+// made some changes to reduce the warnings suggestions by the IDE.
 
     protected static String firstName; // changed to protected so that it can be accessed by the Players class
     private String lastName; // changed to private so that it can only be accessed by the Person class
