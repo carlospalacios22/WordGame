@@ -53,5 +53,7 @@ public class GamePlay {
             answer = input.next();
         } while (answer.equalsIgnoreCase("yes"));
         input.close();
-    }
-}
+
+        
+    }// End of the main method
+}// End of the GamePlay class
