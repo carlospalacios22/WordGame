@@ -19,6 +19,6 @@ public class Physical implements Award {
             System.out.println(player.getFirstName() + " lost. They could have won " + physicalPrizes[prizeIndex]);
             return 0;
         }
-    }
+    }// end of displayWinnings method
 
-}
+}// end of Physical class
