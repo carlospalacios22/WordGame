@@ -1,24 +1,26 @@
+
+
 import java.util.Random;
 
 public class Physical implements Award {
-    private String[] physicalPrizes = {"Car", "Boat", "Vacation", "TV", "Phone"};
-    
-    public int getRandomPrize() {
-        Random random = new Random();
-        int index = random.nextInt(physicalPrizes.length);
-        return index;
-    }
+// Array of physical prizes
+private String[] prizes = {"A trip to Hawaii", "A brand new car", "A year's supply of chocolate", "A 65-inch TV", "A luxury cruise"};
 
-    public int displayWinnings(Players player, boolean isCorrect) {
-        if (isCorrect) {
-            int prizeIndex = getRandomPrize();
-            System.out.println(player.getFirstName() + " won " + physicalPrizes[prizeIndex]);
-            return 0;
-        } else {
-            int prizeIndex = getRandomPrize();
-            System.out.println(player.getFirstName() + " lost. They could have won " + physicalPrizes[prizeIndex]);
-            return 0;
-        }
-    }// end of displayWinnings method
+public int getRandomPrize() {
+Random rand = new Random();
+int randomIndex = rand.nextInt(prizes.length);
+return randomIndex;
+}
 
-}// end of Physical class
+@Override
+public int displayWinnings(Players player, boolean isGuessCorrect) {
+int randomPrizeIndex = getRandomPrize();
+if (isGuessCorrect) {
+System.out.println("Congratulations " + player.getFirstName() + "! You won " + prizes[randomPrizeIndex]);
+return 0;
+} else {
+System.out.println("Unfortunately " + player.getFirstName() + ", you lost. You could have won " + prizes[randomPrizeIndex]);
+return 0;
+}
+}
+}
