@@ -1,55 +1,42 @@
 
-//Person class begin
-
+// This class represents a person with a first name and a last name.
 public class Person {
-    // private variables 
+
+  // Instance variables
     private String firstName;
     private String lastName;
 
+    // Constructor
+    public Person(String firstName) {
+      this.firstName = firstName;
+      this.lastName = "";
+    }
+    // Constructor
+    public Person(String firstName, String lastName) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+    }
+
+
+    // Getters and setters  {getFirstName, setFirstName, getLastName, setLastName}
+    public String getFirstName() {
+      return firstName;
+    }
     
-    //Create two overloaded constructors for the Person class
-    // First constructor
-    public Person(String firstName) 
-    {
-        this.firstName = firstName;
-        this.lastName = "";
+    public void setFirstName(String firstName) {
+      this.firstName = firstName;
     }
-
-    // Second constructor
-    public Person(String firstName, String lastName) 
-    {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    
+    public String getLastName() {
+      return lastName;
     }
+    
+    public void setLastName(String lastName) {
+      this.lastName = lastName;
 
+    }//end of getters and setters
+
+
+
+  }//end of Person class
   
-  // Getters and Setters for the names
-    public String getFirstName() 
-    {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) 
-    {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() 
-    {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) 
-    {
-        this.lastName = lastName;
-    }
-    
-  
-    public void increaseMoney(int amount) {
-    }
-    
-    public void decreaseMoney(int amount) {
-    }
- 
-
-}// end of person class
