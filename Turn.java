@@ -1,44 +1,29 @@
 
 
-
-
-//Import Scanner library for input/outputs
 import java.util.Scanner;
 
-
-
-
-
-
 public class Turn {
-    
-    public boolean takeTurn(Person player) {
-        Numbers number = new Numbers();
-        number.generateNumber();
-        
-        Scanner input = new Scanner(System.in);
-        System.out.println(player.getFirstName() + ", please enter a number to  guess my number between 0 - 100: ");
-        int guess = input.nextInt();
-        
-        boolean correctGuess = number.compareNumber(guess);
-        int winAmount = 500;
-        int loseAmount = 200;
-        //
-        if (correctGuess) {
-            player.increaseMoney(winAmount);
-            System.out.println("Congratulations " + player.getFirstName() + "! You won " + winAmount + " dollars.");
-        } else {
-            player.decreaseMoney(loseAmount);
-            System.out.println("Sorry " + player.getFirstName() + ", your guess was incorrect. You lost " + loseAmount + " dollars.");
-            if (guess > number.getNumToGuess()) {
-                System.out.println("Your guess was too high.");
-            } else {
-                System.out.println("Your guess was too low.");
-            }
-        }
+    private final int INCREMENT_AMOUNT = 500;
+    private final int DECREMENT_AMOUNT = 200;
+  
+    public boolean takeTurn(Players player, Hosts host) {
+      host.randomizeNum();
+      Numbers numbers = new Numbers();
+      System.out.println(host.getFirstName() + ": " + player.getFirstName() + ", please enter your guess between 0 and 100: ");
+      Scanner input = new Scanner(System.in);
+      int guess = input.nextInt();
+      boolean result = numbers.compareNumber(guess);
+      if (result) {
+        player.setMoney(player.getMoney() + INCREMENT_AMOUNT);
+        System.out.println("Congratulations! " + player.getFirstName() + " won $" + INCREMENT_AMOUNT);
         System.out.println(player.toString());
-        return correctGuess;
+        return true;
+      } else {
+        player.setMoney(player.getMoney() - DECREMENT_AMOUNT);
+        System.out.println(player.getFirstName() + " lost $" + DECREMENT_AMOUNT);
+        System.out.println(player.toString());
+        return false;
+      }
     }
-    
-    
-}
+  }
+  
