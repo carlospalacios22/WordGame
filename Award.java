@@ -1,3 +1,7 @@
+
+
+
+// This interface is used to display the winnings of the player
 public interface Award {
-    int displayWinnings(Players player, boolean correctGuess);
-}
+    public int displayWinnings(Players player, boolean isGuessCorrect);
+    }
