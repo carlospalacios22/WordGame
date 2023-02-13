@@ -1,51 +1,46 @@
 
-//using the Random library
+// import Random library
 import java.util.Random;
 
 
-//////////////////////////////////////////
-
-//start of Numbers class
+//beginning of Numbers class
 public class Numbers {
-    private static int randomNum;
+  private static int randomNum;
 
-    public void generateNumber() 
-    {
-        Random rand = new Random();
-        randomNum = rand.nextInt(101);
-    }
+  //getter method
+  public static int getRandomNum() {
+    return randomNum;
+  }
+  //setter method
+  
+  public static void setRandomNum(int randomNum) {
+    Numbers.randomNum = randomNum;
+  }
+  //this method will generate a random number
+  public void generateNumber() {
+    Random rand = new Random();
+    randomNum = rand.nextInt(101);
+  }
 
-    public boolean compareNumber(int guess) 
-    {
-        if (randomNum == guess) {
-            System.out.println("Congratulations, you guessed the number!");
-            return true;
-        } else if (randomNum < guess) {
-            System.out.println("I'm sorry. That guess was too high.");
-            return false;
-        } else {
-            System.out.println("I'm sorry, That guess was too low.");
-            return false;
-        }
-    }
 
-    public static int getRandomNum() 
-    {
-        return randomNum;
-    }
+  //this method will compare the user's guess to the random number
+  public boolean compareNumber(int guess) {
+    if (guess == randomNum) {
 
-    public static void setRandomNum(int randomNum) 
-    {
-        Numbers.randomNum = randomNum;
-    }
+      //if the user's guess is equal to the random number, then the user will win
+      System.out.println("Congratulations, you guessed the number!");
+      return true;
+    } else if (guess > randomNum) {
 
-    public int getNumToGuess() {
-        return randomNum;
-    }
+      //if the user's guess is greater than the random number
+      System.out.println("I'm sorry. That guess was too high.");
+      return false;
+    } else {
+      //if the user's guess is less than the random number
+      System.out.println("I'm sorry, That guess was too low.");
+      return false;
+    }//end of if else
 
-    public int getRandomNumber() {
-        return 0;
-    }
-    
-    
-}//end of numbers class
+
+  }//end of compareNumber method
+}//end of Numbers class
