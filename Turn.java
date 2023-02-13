@@ -1,38 +1,45 @@
+
+// Library Imports
+import java.util.Random;
 import java.util.Scanner;
 
-// Start of the Turn class
+
+// Start of Turn class
 public class Turn {
+
+
+  // Start of takeTurn method
   public boolean takeTurn(Players player, Hosts host) {
+    // Ask the player to guess a number
 
-        // Ask the user for a guess
-      System.out.println("Rich Uncle Pennybags: " + player.getFirstName() + ", enter a guess for the random number between 0 and 100.");
-      Scanner input = new Scanner(System.in);
-      int guess = input.nextInt();
+    System.out.println(host.getFirstName() + ": " + player.getFirstName() + ", please enter your guess between 0 and 100: ");
+    Scanner input = new Scanner(System.in);
+    int guess = input.nextInt();
 
-        // Create a new Numbers object
-       Numbers numbers = new Numbers();
-       
-      // Call the compareNumber method
-      boolean correctGuess = numbers.compareNumber(guess);
+    // Compare the guess to the number
+    boolean result = Numbers.compareNumber(guess);
+
+    // If the guess is correct, then display the winnings
+    Random random = new Random();
+    int prizeType = random.nextInt(2);
+
+    // If the prize type is 0, then it is money
+    int winnings = 0;
+    if (prizeType == 0) {
+      Money money = new Money();
+      winnings = money.displayWinnings(player, result);
+
+      // If the prize type is 1, then it is physical
+    } else {
+      Physical physical = new Physical();
+      winnings = physical.displayWinnings(player, result);
+    }
+
+    // If the guess is correct, then display the winnings
+    player.setMoney(player.getMoney() + winnings);
+    System.out.println(player.toString());
+    return result;
 
 
-        // If the guess is correct, add $500 to the player's money
-      if (correctGuess) {
-          player.setMoney(player.getMoney() + 500);
-          System.out.println("Congratulations, " + player.getFirstName() + "! You are the winner.");
-        
-          return true;
-      } // end of if statement
-
-
-
-      // If the guess is incorrect, subtract $200 from the player's money
-      else {
-          player.setMoney(player.getMoney() - 200);
-         
-          System.out.println("Your guess was too " + (guess > Numbers.getRandomNum() ? "high." : "low."));
-          return false;
-
-      }// end of if/else statement
-  }// end of takeTurn method
-}// end of Turn class
+  }// End of takeTurn method
+}// End of Turn class
