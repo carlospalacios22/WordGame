@@ -2,7 +2,7 @@
 
 
 
-
+// This class is a subclass of Person
 public class Hosts extends Person {
 
     private Numbers number;
@@ -12,9 +12,11 @@ public class Hosts extends Person {
     }
  
 
-    
+    /// Getters and Setters
     public void randomizeNum() {
         this.number = new Numbers();
         this.number.generateNumber();
-    }
-}
+    }// End of randomizeNum method
+
+    
+}// End of Hosts class
