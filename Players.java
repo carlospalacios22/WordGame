@@ -1,38 +1,32 @@
+
+// begin of Players 
 public class Players extends Person {
     private int money;
 
+  // getters and setters
     public int getMoney() {
-        return money;
+      return money;
     }
-
+  
     public void setMoney(int money) {
-        this.money = money;
-    }
-
-    public Players() {
-        super(firstName);
-        this.money = 1000;
-    }
+      this.money = money;
+    }// end of getters and setters
 
     public Players(String firstName, String lastName) {
-        super(firstName, lastName);
-        this.money = 1000;
+      super(firstName, lastName);
+      this.money = 1000;
     }
-
+  
     public Players(String firstName) {
-        super(firstName);
-        this.money = 1000;
+      super(firstName);
+      this.money = 1000;
     }
 
-
+  //override the toString method
     @Override
     public String toString() {
-        return getFirstName() + " " + getLastName() + " now has $" + money + " dollars.";
-    }// end of toString method
-
-    public String getCurrentUserName() {
-        return null;
+      return "Player: " + getFirstName() + " " + getLastName() + " - Current of money: $" + money;
     }
 
-    
-}// end of Players class
+  }// End of Players class
+  
