@@ -1,42 +1,33 @@
 
-
-
-
+//begin of Players class
 public class Players extends Person {
-    private double money;
-  
-    public Players(String firstName, double money) {
-      super(firstName);
-      this.money = money;
-    }
-  
-    public Players(String firstName, String lastName, double money) {
-      super(firstName, lastName);
-      this.money = money;
-    }
-  
-    public double getMoney() {
+    private int money;
+  //getters and setters {getMoney, setMoney}
+    public int getMoney() {
       return money;
     }
   
-    public void setMoney(double money) {
+    public void setMoney(int money) {
       this.money = money;
     }
-
-
-    public void increaseMoney(int amount) {
-        this.money += amount;
-    }
-    
-    public void decreaseMoney(int amount) {
-        this.money -= amount;
-    }
-    
-
   
+    public Players(String firstName, String lastName) {
+      super(firstName, lastName);
+      this.money = 1000;
+    }
+  
+    public Players(String firstName) {
+      super(firstName);
+      this.money = 1000;
+    }//end of getters and setters {getMoney, setMoney}
+
+    
+ //Overriding the toString method
     @Override
     public String toString() {
-      return "Bat Man says " + super.getFirstName() + " " + super.getLastName() + ", Money: $" + money;
-    }
-  }
+      return "Player: " + getFirstName() + " " + getLastName() + " - Current of money: $" + money;
+    }//end of toString method
+
+
+  }//end of Players class
   
