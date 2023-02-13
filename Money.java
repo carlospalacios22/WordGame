@@ -1,20 +1,19 @@
+
+
+import java.util.Scanner;
+
 public class Money implements Award {
-    private int winAmount;
-    private int loseAmount;
+  private final int INCREMENT_AMOUNT = 500;
+  private final int DECREMENT_AMOUNT = 200;
 
-    public Money(int winAmount, int loseAmount) {
-        this.winAmount = winAmount;
-        this.loseAmount = loseAmount;
+  @Override
+  public int displayWinnings(Players player, boolean correctGuess) {
+    if (correctGuess) {
+      System.out.println(player.getFirstName() + " won $" + INCREMENT_AMOUNT);
+      return INCREMENT_AMOUNT;
+    } else {
+      System.out.println(player.getFirstName() + " lost $" + DECREMENT_AMOUNT);
+      return -DECREMENT_AMOUNT;
     }
-
-    
-    public int displayWinnings(Player player, boolean guessCorrect) {
-        if (guessCorrect) {
-            System.out.println(player.getFirstName() + " won " + winAmount + " dollars!");
-            return winAmount;
-        } else {
-            System.out.println(player.getFirstName() + " lost " + loseAmount + " dollars.");
-            return -loseAmount;
-        }
-    }
+  }
 }
