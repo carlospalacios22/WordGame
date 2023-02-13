@@ -1,60 +1,56 @@
+
+// import scanner library
 import java.util.Scanner;
 
-
-// Start of the GamePlay class
+// Start of GamePlay class
 public class GamePlay {
-    private static Players[] currentPlayers;
-    public static void main(String[] args) {
-  
-        Scanner input = new Scanner(System.in);
-      // Create an array of Players objects
-        currentPlayers = new Players[3];
-        String answer;
+  private Players[] currentPlayers;
+  //  start of main method
+  public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    GamePlay game = new GamePlay();
+    // Create the host
+    Hosts host = new Hosts("Pennybags","");
+    
+    Numbers.generateNumber();
+    Turn turn = new Turn();
+    game.currentPlayers = new Players[3];
+    // Ask for the players names
+    for (int i = 0; i < game.currentPlayers.length; i++) {
+      System.out.print("Enter player " + (i + 1) + " name: ");
+      String name = input.nextLine();
+      // Ask if they want to enter a last name
+      System.out.print("Would you like to enter a last name? (yes/no): ");
+      String answer = input.nextLine();
+      if (answer.equals("yes")) {
+        System.out.print("Enter your last name: ");
+        String lastName = input.nextLine();
+        game.currentPlayers[i] = new Players(name, lastName);
+      } else {
+        game.currentPlayers[i] = new Players(name);
+      }
+      game.currentPlayers[i].setMoney(1000);
+    }
+    
+    String answer;
+    boolean playAgain = true;
+    while (playAgain) {
+      int currentPlayerIndex = 0;
+      while (!turn.takeTurn(game.currentPlayers[currentPlayerIndex % 3], host)) {
+        currentPlayerIndex++;
+      }// End of while loop
 
-        // Loop through the array and create a new Players object for each player
-        for (int i = 0; i < 3; i++) {
-            System.out.println("Enter the first name of player " + (i + 1));
-            String firstName = input.next();
-
-            System.out.print("Would you like to enter a last name? (yes/no): ");
-            answer = input.next();
-            String lastName = "";
-            if (answer.equalsIgnoreCase("yes")) {
-                System.out.println("Enter the last name of player " + (i + 1));
-                lastName = input.next();
-            }
-
-            currentPlayers[i] = new Players(firstName, lastName);
-        }
-
-        do {
-            // loop through all the players
-            for (int i = 0; i < 3; i++) 
-            {
-                Hosts host = new Hosts();
-                System.out.println("\n" + host.getIntro(currentPlayers[i].getFirstName()));
-
-                Turn turn = new Turn();
-                boolean isWinner = turn.takeTurn(currentPlayers[i], host);
-
-                if (isWinner) {
-                    System.out.println(currentPlayers[i].toString());
-                    break;
-                }
-
-                // if the current player is the last one, reset the counter
-                if (i == 2) {
-                    i = -1;
-                }
-            }// end of for loop
-
-            // Ask the user if they want to play again
-            System.out.print("Would you like to play again? (yes/no): ");
-            answer = input.next();
-        } while (answer.equalsIgnoreCase("yes"));
-        input.close();
+      // Ask if they want to play again
+      System.out.println("Would you like to play again? (yes/no): ");
+      answer = input.nextLine();
+      // If they say no, then end the game
+      if (answer.equals("no")) {
+        playAgain = false;
+      } else {
+        Numbers.generateNumber();
+      }// End of if else statement
 
 
-
-    }// end of main method
-}// end of GamePlay class
+    }// End of while loop
+  }// End of main method
+}// End of GamePlay class
