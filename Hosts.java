@@ -1,11 +1,10 @@
 
 
 
-
 // This class is a subclass of Person
 public class Hosts extends Person {
 
-    private Numbers number;
+    private static String gamePhrase;
 
     public Hosts(String firstName, String lastName) {
         super(firstName, lastName);
@@ -13,10 +12,10 @@ public class Hosts extends Person {
  
 
     /// Getters and Setters
-    public void randomizeNum() {
-        this.number = new Numbers();
-        this.number.generateNumber();
-    }// End of randomizeNum method
+    public void choosePhrase() {
+        Phrases.generatePhrase();
+        gamePhrase = Phrases.randomPhrase;
+    }// End of choosePhrase method
 
     
 }// End of Hosts class
