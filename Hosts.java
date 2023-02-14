@@ -1,21 +1,21 @@
+import java.util.Scanner;
 
-
-
-// This class is a subclass of Person
 public class Hosts extends Person {
-
-    private static String gamePhrase;
 
     public Hosts(String firstName, String lastName) {
         super(firstName, lastName);
     }
- 
 
-    /// Getters and Setters
-    public void choosePhrase() {
-        Phrases.generatePhrase();
-        gamePhrase = Phrases.randomPhrase;
-    }// End of choosePhrase method
-
+    public void enterPhrase() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the phrase for the players to guess: ");
+        String phrase = scanner.nextLine();
+        Phrases.setGamePhrase(phrase);
     
-}// End of Hosts class
+        System.out.println("Do you want to enter a new phrase? (Y/N)");
+        String answer = scanner.nextLine();
+        if (answer.equalsIgnoreCase("Y")) {
+            enterPhrase();
+        }
+    }
+}
