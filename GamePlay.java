@@ -7,10 +7,9 @@ public class GamePlay {
       Scanner input = new Scanner(System.in);
       GamePlay game = new GamePlay();
       Hosts host = new Hosts("Pennybags", "");
-      Phrases.generatePhrase();
+      host.enterPhrase();
       Turn turn = new Turn();
       game.currentPlayers = new Players[3];
-      // Ask for the players names
       for (int i = 0; i < game.currentPlayers.length; i++) {
           System.out.print("Enter player " + (i + 1) + " name: ");
           String name = input.nextLine();
@@ -30,19 +29,18 @@ public class GamePlay {
       boolean playAgain = true;
       while (playAgain) {
           int currentPlayerIndex = 0;
+         
           while (!turn.takeTurn(game.currentPlayers[currentPlayerIndex % 3], host)) {
-              currentPlayerIndex++;
-          }
+            currentPlayerIndex++;
+        }
 
-          // Ask if they want to play again
-          System.out.println("Would you like to play again? (yes/no): ");
-          answer = input.nextLine();
-          if (answer.equals("no")) {
-              playAgain = false;
-          } else {
-              host.enterPhrase();
-              Phrases.generatePhrase();
-          }
-      }
-  }
+        System.out.println("Would you like to play again? (yes/no): ");
+        answer = input.nextLine();
+        if (answer.equals("no")) {
+            playAgain = false;
+        } else {
+            host.enterPhrase();
+        }
+    }
+}
 }
