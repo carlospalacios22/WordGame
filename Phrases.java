@@ -1,40 +1,28 @@
-import java.util.ArrayList;
-
 public class Phrases {
-    public static String gamePhrase;
-    public static String playingPhrase;
-    public static ArrayList<Integer> indices;
-  
+    private static String gamePhrase;
+    private static String playingPhrase;
+
     public static void setGamePhrase(String phrase) {
-      gamePhrase = phrase;
-      playingPhrase = gamePhrase.replaceAll("[a-zA-Z]", "_");
+        gamePhrase = phrase;
+        playingPhrase = gamePhrase.replaceAll("[A-Za-z]", "_");
     }
-  
-    public static String getPhrase() {
-      return playingPhrase;
+
+    public static String getPlayingPhrase() {
+        return playingPhrase;
     }
-  
+
     public static void findLetters(String letter) throws MultipleLettersException {
-      if (letter.length() != 1) {
-        throw new MultipleLettersException();
-      }
-      indices = new ArrayList<>();
-      int index = gamePhrase.indexOf(letter);
-      while (index >= 0) {
-        indices.add(index);
-        index = gamePhrase.indexOf(letter, index + 1);
-      }
-      if (indices.size() > 0) {
-        char[] charArray = playingPhrase.toCharArray();
-        for (int i = 0; i < indices.size(); i++) {
-          charArray[indices.get(i)] = letter.charAt(0);
+        if (letter.length() > 1) {
+            throw new MultipleLettersException();
         }
-        playingPhrase = new String(charArray);
+        for (int i = 0; i < gamePhrase.length(); i++) {
+            if (gamePhrase.charAt(i) == letter.charAt(0)) {
+                playingPhrase = playingPhrase.substring(0, i) + letter + playingPhrase.substring(i + 1);
+            }
+        }
         if (!playingPhrase.contains("_")) {
-          System.out.println("Congratulations, you won!");
-          // award a prize here
+            System.out.println("Congratulations, you won!");
+            // award prize
         }
-      }
     }
-  }
-  
+}
