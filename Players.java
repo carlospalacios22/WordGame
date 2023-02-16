@@ -1,4 +1,3 @@
-
 // begin of Players 
 public class Players extends Person {
     private int money;
@@ -28,5 +27,10 @@ public class Players extends Person {
       return "Player: " + getFirstName() + " " + getLastName() + " - Current of money: $" + money;
     }
 
+    public void addWinnings(int iNCREMENT_AMOUNT) {
+    }
+
+    public void addLosses(int dECREMENT_AMOUNT) {
+    }
+
   }// End of Players class
-  
