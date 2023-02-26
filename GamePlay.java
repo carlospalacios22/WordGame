@@ -15,5 +15,3 @@ public class GamePlay {
         
     }//End of main method
 }//End of GamePlay class
-
-
