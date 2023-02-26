@@ -128,7 +128,7 @@ private class AddHostButtonListener implements ActionListener {
                 players = new Players[3];
                 updatePlayersLabel();
                 host = new Hosts(host.getFirstName(), "");
-                host.enterPhrase();
+               
                 hostLabel.setText("Host: " + host.getFirstName());
                 phraseLabel.setText(Phrases.getPlayingPhrase());
             } else {
