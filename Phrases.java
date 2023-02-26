@@ -1,27 +1,28 @@
-
-
-
-
 // Start of Phrases class
 public class Phrases {
 
     // instance variables
-    private static String gamePhrase;
+    private static Object gamePhrase;
     private static String playingPhrase;
 
-
-//Start of setGamePhrase method
-    public static void setGamePhrase(String phrase) {
-        gamePhrase = phrase;
+    // method to set the game phrase
+    public static void setGamePhrase(Object object) {
+        gamePhrase = object;
         // replaces all the letters in the phrase with underscores
-        playingPhrase = gamePhrase.replaceAll("[a-zA-Z]", "_");
+        playingPhrase = ((String) gamePhrase).replaceAll("[a-zA-Z]", "_");
     }
-//Start of getPlayingPhrase method
+
+    // method to set the secret phrase
+    public static void setSecretPhrase(String secretPhrase) {
+        setGamePhrase(secretPhrase);
+    }
+
+    // method to get the playing phrase
     public static String getPlayingPhrase() {
         return playingPhrase;
     }
 
-//Start of findLetters method
+    // method to find letters in the game phrase
     public static boolean findLetters(String letter) throws MultipleLettersException {
         // if statement to check if the letter is more than one character
         if (letter.length() != 1) {
@@ -29,14 +30,12 @@ public class Phrases {
         }
         boolean foundLetter = false;
         // for loop to find the letters in the phrase
-        for (int i = 0; i < gamePhrase.length(); i++) {
-            if (Character.toLowerCase(gamePhrase.charAt(i)) == letter.charAt(0)) {
-                playingPhrase = playingPhrase.substring(0, i) + gamePhrase.charAt(i) + playingPhrase.substring(i + 1);
+        for (int i = 0; i < ((String) gamePhrase).length(); i++) {
+            if (Character.toLowerCase(((String) gamePhrase).charAt(i)) == letter.charAt(0)) {
+                playingPhrase = playingPhrase.substring(0, i) + ((String) gamePhrase).charAt(i) + playingPhrase.substring(i + 1);
                 foundLetter = true;
             }
         }
         return foundLetter;
-
-
-    }//End of findLetters method
-}//End of Phrases class
+    }
+}
