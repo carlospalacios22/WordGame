@@ -7,11 +7,17 @@ import java.awt.event.*;
 
 // Start of GUI class
 public class GUI extends JFrame {
+
+    // create an array of players 3 allowed players, no changes from branch 5
     private Players[] players = new Players[3];
+
+    // create a host
     private Hosts host = new Hosts("Pennybags", "");
+// JLabels for the players and host
     private JLabel playersLabel;
     private JLabel hostLabel;
     private JLabel phraseLabel;
+    // buttons for adding a player and host
     private JButton addPlayerButton;
     private JButton addHostButton;
     private JButton startButton;
@@ -76,7 +82,7 @@ private class AddPlayerButtonListener implements ActionListener {
         for (int i = 0; i < players.length; i++) {
             if (players[i] == null) {
 
-                
+
                 // get the first name
                 String firstName = JOptionPane.showInputDialog("Enter player " + (i + 1) + " first name:");
 
