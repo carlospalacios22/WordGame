@@ -82,17 +82,19 @@ public class GUI extends JFrame {
         }
     }
     
-    // listener for the add host button
-    private class AddHostButtonListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            String name = JOptionPane.showInputDialog("Enter host name:");
-            if (name != null && !name.trim().equals("")) {
-                host = new Hosts(name, "");
-                host.enterPhrase();
-                hostLabel.setText("Host: " + host.getFirstName());
-            }
+// listener for the add host button
+private class AddHostButtonListener implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+        String name = JOptionPane.showInputDialog("Enter host name:");
+        if (name != null && !name.trim().equals("")) {
+            String phrase = JOptionPane.showInputDialog("Enter a  phrase for the players to guess:");
+            host = new Hosts(name, "");
+            host.setSecretPhrase(phrase);
+            hostLabel.setText("Host: " + host.getFirstName());
         }
     }
+}
+
     
     // listener for the start game button
     private class StartButtonListener implements ActionListener {
@@ -146,13 +148,7 @@ public class GUI extends JFrame {
         playersLabel.setText(playersText);
     }
     
-    // main method to start the application
-    public static void main(String[] args) {
-        // start the EDT
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new GUI().setVisible(true);
-            }
-        });
+    // main method to start the application moved to GamePlay
+   
+      
     }
-}    
