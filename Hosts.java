@@ -11,18 +11,14 @@ public class Hosts extends Person {
         super(firstName, lastName);
         this.gamePhrase = "";
     }
-//Start of enterPhrase method
-    public void enterPhrase() {
-        Scanner input = new Scanner(System.in);
-        System.out.println(getFirstName() + ", please enter a phrase for the players to guess:");
-        this.gamePhrase = input.nextLine();
-        Phrases.setGamePhrase(gamePhrase);
-    }
+   // method to set the secret phrase
+   public static void setSecretPhrase(String secretPhrase) {
+    setSecretPhrase(secretPhrase);
+}
 
-    public void randomizePhrase() {
-        enterPhrase();
 
-    }//End of randomizePhrase method
+
+
     public Object getGamePhrase() {
         return null;
     }
