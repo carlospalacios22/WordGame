@@ -1,9 +1,10 @@
 
 
 
-
+//library
 import javax.swing.*;
 
+// Start of Turn class
 public class Turn {
     
     private GUI gui;
@@ -42,7 +43,9 @@ public class Turn {
         }
     
         return false;
-    }
+
+        
+    }// End of takeTurn method
     
     
-}
+}// End of Turn class
