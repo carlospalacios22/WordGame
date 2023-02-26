@@ -17,7 +17,7 @@
 No changes made to the branch 5 (still has all bugs) but added a GUI
 
 # to fix
-# Physical winngs are not showing 
+# Physical winnings are not showing 
 # Wrong answers cuase a error at the moment 
 # Players can keep guessing the same letter 
 
