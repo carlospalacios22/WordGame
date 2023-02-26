@@ -1,26 +1,22 @@
 
 
-import java.util.Scanner;
 
-
-//Start of Hosts class
 public class Hosts extends Person {
-    private String gamePhrase;
-//Start of Hosts constructor
+  
+    private static String gamePhrase;
+
+    // constructor
     public Hosts(String firstName, String lastName) {
         super(firstName, lastName);
-        this.gamePhrase = "";
     }
-   // method to set the secret phrase
-   public static void setSecretPhrase(String secretPhrase) {
-    setSecretPhrase(secretPhrase);
+    
+    // method to set the game phrase
+    public static void setGamePhrase(String phrase) {
+        gamePhrase = phrase;
+    }
+    
+    // method to get the game phrase
+    public static String getGamePhrase() {
+        return gamePhrase;
+    }
 }
-
-
-
-
-    public Object getGamePhrase() {
-        return null;
-    }
-
-}//End of Hosts class
