@@ -1,7 +1,11 @@
+
+// import libraries
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+
+// Start of GUI class
 public class GUI extends JFrame {
     private Players[] players = new Players[3];
     private Hosts host = new Hosts("Pennybags", "");
