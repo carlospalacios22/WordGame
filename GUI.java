@@ -107,8 +107,10 @@ private class AddHostButtonListener implements ActionListener {
                 hostLabel.setText("Host: " + host.getFirstName());
             } else {
                 JOptionPane.showMessageDialog(GUI.this, "Please enter a phrase for the players to guess.");
-            }
-        }
+
+                
+            }// end of if/else
+        }// end  else "please enter a phrase"
     }// end of AddHostButtonListener class
 }// end of AddHostButtonListener class
 
