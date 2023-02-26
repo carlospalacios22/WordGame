@@ -23,5 +23,8 @@ public class Hosts extends Person {
         enterPhrase();
 
     }//End of randomizePhrase method
+    public Object getGamePhrase() {
+        return null;
+    }
 
 }//End of Hosts class
