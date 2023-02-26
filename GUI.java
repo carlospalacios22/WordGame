@@ -189,16 +189,18 @@ private class AddHostButtonListener implements ActionListener {
             } else {
                 System.exit(0);
 
-                
+
             }// end of if/else
         }// end of hasPlayers method
     }// end of StartButtonListener class
     
     //  method to update the players label
     private void updatePlayersLabel() {
+        // create a string to hold the players
         String playersText = "Players: ";
         for (int i = 0; i < players.length; i++) {
             if (players[i] != null) {
+                
                 playersText += players[i].getFirstName() + " - Current money: $" + players[i].getMoney() + " ";
             }
         }
