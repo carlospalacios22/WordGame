@@ -23,8 +23,13 @@ public class GUI extends JFrame {
     private JButton startButton;
     
     public GUI() {
+
+        // set the title of the window
         super("Word Guessing Game");
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // set the size of the window if not it will be too small
         setPreferredSize(new Dimension(500, 300));
         setLayout(new BorderLayout());
         
@@ -39,7 +44,7 @@ public class GUI extends JFrame {
         // create a label for the host
         hostLabel = new JLabel("Host: " + host.getFirstName());
         topPanel.add(hostLabel);
-        
+        // add the top panel to the window
         add(topPanel, BorderLayout.NORTH);
         
         // create a panel for the center section of the window
@@ -54,7 +59,7 @@ public class GUI extends JFrame {
         startButton = new JButton("Start Game");
         startButton.addActionListener(new StartButtonListener());
         centerPanel.add(startButton);
-        
+        // add the center panel to the window
         add(centerPanel, BorderLayout.CENTER);
         
         // create a panel for the bottom section of the window
@@ -69,10 +74,11 @@ public class GUI extends JFrame {
         addHostButton = new JButton("Add Host and Phrase");
         addHostButton.addActionListener(new AddHostButtonListener());
         bottomPanel.add(addHostButton);
-        
+        // add the bottom panel to the window
         add(bottomPanel, BorderLayout.SOUTH);
-        
+        // pack the window
         pack();
+        // center the window
         setLocationRelativeTo(null);
     }
     
