@@ -156,7 +156,7 @@ private class AddHostButtonListener implements ActionListener {
     
             // Set the secret phrase for the players to guess
             Phrases.setGamePhrase(Hosts.getGamePhrase());
-        
+        // update the phrase label
             boolean hasPlayers = false;
             for (int i = 0; i < players.length; i++) {
                 if (players[i] != null) {
@@ -164,6 +164,7 @@ private class AddHostButtonListener implements ActionListener {
                     break;
                 }
             }
+            // check if there are any players
             if (!hasPlayers) {
                 JOptionPane.showMessageDialog(GUI.this, "Please add at least one player.");
                 return;
@@ -175,20 +176,23 @@ private class AddHostButtonListener implements ActionListener {
             while (!turn.takeTurn(players[currentPlayerIndex % 3], host)) {
                 currentPlayerIndex++;
             }
+            // ask the user if they want to play again
             int answer = JOptionPane.showConfirmDialog(GUI.this, "Would you like to play again?", "Play Again?", JOptionPane.YES_NO_OPTION);
             if (answer == JOptionPane.YES_OPTION) {
                 // reset the game
                 players = new Players[3];
                 updatePlayersLabel();
                 host = new Hosts(host.getFirstName(), "");
-            
+            // update the host label
                 hostLabel.setText("Host: " + host.getFirstName());
                 phraseLabel.setText(Phrases.getPlayingPhrase());
             } else {
                 System.exit(0);
-            }
-        }
-    }
+
+                
+            }// end of if/else
+        }// end of hasPlayers method
+    }// end of StartButtonListener class
     
     //  method to update the players label
     private void updatePlayersLabel() {
