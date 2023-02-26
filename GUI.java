@@ -97,7 +97,7 @@ public class GUI extends JFrame {
     // listener for the start game button
     private class StartButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            if (host.getGamePhrase() == null || host.getGamePhrase().trim().equals("")) {
+            if (host.getGamePhrase() == null || ((String) host.getGamePhrase()).trim().equals("")) {
                 JOptionPane.showMessageDialog(GUI.this, "Please enter a game phrase.");
                 return;
             }
