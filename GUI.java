@@ -109,8 +109,8 @@ private class AddHostButtonListener implements ActionListener {
                 JOptionPane.showMessageDialog(GUI.this, "Please enter a phrase for the players to guess.");
             }
         }
-    }
-}
+    }// end of AddHostButtonListener class
+}// end of AddHostButtonListener class
 
     
     // listener for the start game button
@@ -121,7 +121,7 @@ private class AddHostButtonListener implements ActionListener {
                 return;
             }
     
-            // Set the secret phrase
+            // Set the secret phrase for the players to guess
             Phrases.setGamePhrase(Hosts.getGamePhrase());
         
             boolean hasPlayers = false;
@@ -157,7 +157,7 @@ private class AddHostButtonListener implements ActionListener {
         }
     }
     
-    // helper method to update the players label
+    //  method to update the players label
     private void updatePlayersLabel() {
         String playersText = "Players: ";
         for (int i = 0; i < players.length; i++) {
@@ -166,10 +166,12 @@ private class AddHostButtonListener implements ActionListener {
             }
         }
         playersLabel.setText(playersText);
-    }
+
+
+    }// end of updatePlayersLabel method
     
  
 
-}
+}// end of GUI class
 
 
