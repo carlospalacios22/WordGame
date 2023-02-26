@@ -75,24 +75,43 @@ private class AddPlayerButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < players.length; i++) {
             if (players[i] == null) {
+
+                
+                // get the first name
                 String firstName = JOptionPane.showInputDialog("Enter player " + (i + 1) + " first name:");
+
+                // if the user clicks cancel, do nothing
                 if (firstName != null && !firstName.trim().equals("")) {
                     String lastName = "";
+
+                    // ask the user if they want to enter a last name
                     int option = JOptionPane.showConfirmDialog(GUI.this, "Do you want to enter a last name?", "Last Name", JOptionPane.YES_NO_OPTION);
+
+                    // if the user clicks yes, get the last name
                     if (option == JOptionPane.YES_OPTION) {
+
+                        // get the last name
                         lastName = JOptionPane.showInputDialog("Enter player " + (i + 1) + " last name:");
                         if (lastName == null) {
                             lastName = "";
                         }
                     }
+
+
+                    // create a new player Array from Gameplay class moved here 
                     players[i] = new Players(firstName, lastName);
                     updatePlayersLabel();
                     break;
-                }
-            }
-        }
-    }
-}
+
+                }// 1st end of if
+
+
+            }// 2nd end of if
+
+        }// end of for loop
+
+    }// end of actionPerformed method
+}// end of AddPlayerButtonListener class
 
     
  // listener for the add host button
@@ -108,7 +127,7 @@ private class AddHostButtonListener implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(GUI.this, "Please enter a phrase for the players to guess.");
 
-                
+
             }// end of if/else
         }// end  else "please enter a phrase"
     }// end of AddHostButtonListener class
