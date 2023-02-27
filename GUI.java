@@ -106,7 +106,16 @@ aboutMenuItem.addActionListener(new ActionListener() {
     }
 });
 
-
+// Create the "Layout" menu item
+JMenuItem layoutMenuItem = new JMenuItem("Layout");
+layoutMenuItem.setMnemonic(KeyEvent.VK_L);
+aboutMenu.add(layoutMenuItem);
+layoutMenuItem.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(GUI.this, "This game was created5 using Java Swing.\n The layout is BorderLayout. This is to arrange the components in the GUI.\n A reason I used this layout is becuase the layouts provide a flexible platform\n for building GUI applications. Another good use of BorderLayout is thatg it\n makes everyhhing simple to manage for example, by simply using\n south, north east and west and center. Code is also easier to put tother and doens't require anything complex. ");
+    }
+});
 
 
 
