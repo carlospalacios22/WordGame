@@ -23,72 +23,93 @@ public class GUI extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         
-        // Create the "Game" menu
-        JMenu gameMenu = new JMenu("Game");
-        gameMenu.setMnemonic(KeyEvent.VK_G);
-        menuBar.add(gameMenu);
-        
-        // Create the "New Game" menu item
-        JMenuItem newGameMenuItem = new JMenuItem("New Game");
-        newGameMenuItem.setMnemonic(KeyEvent.VK_N);
-        gameMenu.add(newGameMenuItem);
-        newGameMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                GUI newGame = new GUI();
-                newGame.setVisible(true);
-                dispose();
-            }
-        });
-        
-        // Create the "Add Player" menu item
-        JMenuItem addPlayerMenuItem = new JMenuItem("Add Player");
-        addPlayerMenuItem.setMnemonic(KeyEvent.VK_P);
-        gameMenu.add(addPlayerMenuItem);
-        addPlayerMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (int i = 0; i < players.length; i++) {
-                    if (players[i] == null) {
-                        String firstName = JOptionPane.showInputDialog("Enter player " + (i + 1) + " first name:");
-                        if (firstName != null && !firstName.trim().equals("")) {
-                            String lastName = "";
-                            int option = JOptionPane.showConfirmDialog(GUI.this, "Do you want to enter a last name?", "Last Name", JOptionPane.YES_NO_OPTION);
-                            if (option == JOptionPane.YES_OPTION) {
-                                lastName = JOptionPane.showInputDialog("Enter player " + (i + 1) + " last name:");
-                                if (lastName == null) {
-                                    lastName = "";
-                                }
-                            }
-                            players[i] = new Players(firstName, lastName);
-                            updatePlayersLabel();
-                            break;
+      // Create the "Game" menu
+JMenu gameMenu = new JMenu("Game");
+gameMenu.setMnemonic(KeyEvent.VK_G);
+menuBar.add(gameMenu);
+
+// Create the "New Game" menu item
+JMenuItem newGameMenuItem = new JMenuItem("New Game");
+newGameMenuItem.setMnemonic(KeyEvent.VK_N);
+gameMenu.add(newGameMenuItem);
+newGameMenuItem.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        GUI newGame = new GUI();
+        newGame.setVisible(true);
+        dispose();
+    }
+});
+
+// Create the "Add Player" menu item
+JMenuItem addPlayerMenuItem = new JMenuItem("Add Player");
+addPlayerMenuItem.setMnemonic(KeyEvent.VK_P);
+gameMenu.add(addPlayerMenuItem);
+addPlayerMenuItem.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        for (int i = 0; i < players.length; i++) {
+            if (players[i] == null) {
+                String firstName = JOptionPane.showInputDialog("Enter player " + (i + 1) + " first name:");
+                if (firstName != null && !firstName.trim().equals("")) {
+                    String lastName = "";
+                    int option = JOptionPane.showConfirmDialog(GUI.this, "Do you want to enter a last name?", "Last Name", JOptionPane.YES_NO_OPTION);
+                    if (option == JOptionPane.YES_OPTION) {
+                        lastName = JOptionPane.showInputDialog("Enter player " + (i + 1) + " last name:");
+                        if (lastName == null) {
+                            lastName = "";
                         }
                     }
+                    players[i] = new Players(firstName, lastName);
+                    updatePlayersLabel();
+                    break;
                 }
             }
-        });
-        
-        // Create the "Add Host" menu item
-        JMenuItem addHostMenuItem = new JMenuItem("Add Host and Phrase");
-        addHostMenuItem.setMnemonic(KeyEvent.VK_H);
-        gameMenu.add(addHostMenuItem);
-        addHostMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String name = JOptionPane.showInputDialog("Enter host name:");
-                if (name != null && !name.trim().equals("")) {
-                    String phrase = JOptionPane.showInputDialog("Enter a phrase for the players to guess:");
-                    if (phrase != null && !phrase.trim().equals("")) {
-                        host = new Hosts(name, "");
-                        Hosts.setGamePhrase(phrase);
-                        hostLabel.setText("Host: " + host.getFirstName());
-                    } else {
-                        JOptionPane.showMessageDialog(GUI.this, "Please enter a phrase for the players to guess.");
-                    }
-                }
+        }
+    }
+});
+
+// Create the "Add Host" menu item
+JMenuItem addHostMenuItem = new JMenuItem("Add Host and Phrase");
+addHostMenuItem.setMnemonic(KeyEvent.VK_H);
+gameMenu.add(addHostMenuItem);
+addHostMenuItem.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String name = JOptionPane.showInputDialog("Enter host name:");
+        if (name != null && !name.trim().equals("")) {
+            String phrase = JOptionPane.showInputDialog("Enter a phrase for the players to guess:");
+            if (phrase != null && !phrase.trim().equals("")) {
+                host = new Hosts(name, "");
+                Hosts.setGamePhrase(phrase);
+                hostLabel.setText("Host: " + host.getFirstName());
+            } else {
+                JOptionPane.showMessageDialog(GUI.this, "Please enter a phrase for the players to guess.");
             }
-        });
+        }
+    }
+});
+
+// Create the "About" menu
+JMenu aboutMenu = new JMenu("About");
+aboutMenu.setMnemonic(KeyEvent.VK_A);
+menuBar.add(aboutMenu);
+
+// Create the "About" menu item
+JMenuItem aboutMenuItem = new JMenuItem("About WordGame");
+aboutMenuItem.setMnemonic(KeyEvent.VK_A);
+aboutMenu.add(aboutMenuItem);
+aboutMenuItem.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(GUI.this, "WordGame Version 0.001\n\n");
+    }
+});
+
+
+
+
+
         
         // Create the top panel for the players and host
         JPanel topPanel = new JPanel(new GridLayout(2, 1));
