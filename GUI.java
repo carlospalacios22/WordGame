@@ -17,38 +17,102 @@ public class GUI extends JFrame {
     private JLabel hostLabel;
     private JLabel phraseLabel;
     // buttons for adding a player and host
-    private JButton addPlayerButton;
-    private JButton addHostButton;
+
+ 
     private JButton startButton;
     
     public GUI() {
   // set the title of the window
   super("Word Guessing Game");
 
-    // create the menu bar and menu items
-    JMenuBar menuBar = new JMenuBar();
-    setJMenuBar(menuBar);
-    JMenu gameMenu = new JMenu("Game");
-    menuBar.add(gameMenu);
-    JMenuItem newGameMenuItem = new JMenuItem("New Game");
-    gameMenu.add(newGameMenuItem);
+// create the menu bar
+JMenuBar menuBar = new JMenuBar();
+setJMenuBar(menuBar);
 
-    newGameMenuItem.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            // create a new instance of the GUI to start a new game
-            GUI newGame = new GUI();
-            newGame.setVisible(true);
-    
-            // dispose of the current game window
-            dispose();
-        }
-    });
-    
+// create the "Game" menu item
+JMenu gameMenu = new JMenu("Game");
+// add a mnemonic to the menu item (Alt-G)
+gameMenu.setMnemonic(KeyEvent.VK_G);
+menuBar.add(gameMenu);
 
+// create the "New Game" menu item
+JMenuItem newGameMenuItem = new JMenuItem("New Game"); 
+// add a mnemonic to the menu item (Alt-N)
+newGameMenuItem.setMnemonic(KeyEvent.VK_N);
+gameMenu.add(newGameMenuItem);
 
-      
+// add an ActionListener to the "New Game" menu item
+newGameMenuItem.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // create a new instance of the GUI to start a new game
+        GUI newGame = new GUI();
+        newGame.setVisible(true);
+
+        // dispose of the current game window
+        dispose();
         
+    }
+    
+});
+
+
+        // create the "Add Player" menu item
+        JMenuItem addPlayerMenuItem = new JMenuItem("Add Player");
+        addPlayerMenuItem.setMnemonic(KeyEvent.VK_P);
+        gameMenu.add(addPlayerMenuItem);
+        addPlayerMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (int i = 0; i < players.length; i++) {
+                    if (players[i] == null) {
+                        String firstName = JOptionPane.showInputDialog("Enter player " + (i + 1) + " first name:");
+                        if (firstName != null && !firstName.trim().equals("")) {
+                            String lastName = "";
+                            int option = JOptionPane.showConfirmDialog(GUI.this, "Do you want to enter a last name?", "Last Name", JOptionPane.YES_NO_OPTION);
+                            if (option == JOptionPane.YES_OPTION) {
+                                lastName = JOptionPane.showInputDialog("Enter player " + (i + 1) + " last name:");
+                                if (lastName == null) {
+                                    lastName = "";
+                                }
+                            }
+                            players[i] = new Players(firstName, lastName);
+                            updatePlayersLabel();
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+
+        // create the "Add Host" menu item
+        JMenuItem addHostMenuItem = new JMenuItem("Add Host and Phrase");
+        addHostMenuItem.setMnemonic(KeyEvent.VK_H);
+        gameMenu.add(addHostMenuItem);
+        addHostMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = JOptionPane.showInputDialog("Enter host name:");
+                if (name != null && !name.trim().equals("")) {
+                    String phrase = JOptionPane.showInputDialog("Enter a phrase for the players to guess:");
+                    if (phrase != null && !phrase.trim().equals("")) {
+                        host = new Hosts(name, "");
+                        Hosts.setGamePhrase(phrase);
+                        hostLabel.setText("Host: " + host.getFirstName());
+                    } else {
+                        JOptionPane.showMessageDialog(GUI.this, "Please enter a phrase for the players to guess.");
+                    }
+                }
+            }
+        });
+
+
+
+
+
+
+
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // set the size of the window if not it will be too small
@@ -84,91 +148,18 @@ public class GUI extends JFrame {
         // add the center panel to the window
         add(centerPanel, BorderLayout.CENTER);
         
-        // create a panel for the bottom section of the window
-        JPanel bottomPanel = new JPanel();
-        
-        // create a button to add a player
-        addPlayerButton = new JButton("Add Player");
-        addPlayerButton.addActionListener(new AddPlayerButtonListener());
-        bottomPanel.add(addPlayerButton);
-        
-        // create a button to add a host
-        addHostButton = new JButton("Add Host and Phrase");
-        addHostButton.addActionListener(new AddHostButtonListener());
-        bottomPanel.add(addHostButton);
-        // add the bottom panel to the window
-        add(bottomPanel, BorderLayout.SOUTH);
+ 
+
         // pack the window
         pack();
         // center the window
         setLocationRelativeTo(null);
+
+
+        
     }
     
- // listener for the add player button
-private class AddPlayerButtonListener implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-        for (int i = 0; i < players.length; i++) {
-            if (players[i] == null) {
-
-
-                // get the first name
-                String firstName = JOptionPane.showInputDialog("Enter player " + (i + 1) + " first name:");
-
-                // if the user clicks cancel, do nothing
-                if (firstName != null && !firstName.trim().equals("")) {
-                    String lastName = "";
-
-                    // ask the user if they want to enter a last name
-                    int option = JOptionPane.showConfirmDialog(GUI.this, "Do you want to enter a last name?", "Last Name", JOptionPane.YES_NO_OPTION);
-
-                    // if the user clicks yes, get the last name
-                    if (option == JOptionPane.YES_OPTION) {
-
-                        // get the last name
-                        lastName = JOptionPane.showInputDialog("Enter player " + (i + 1) + " last name:");
-                        if (lastName == null) {
-                            lastName = "";
-                        }
-                    }
-
-
-                    // create a new player Array from Gameplay class moved here 
-                    players[i] = new Players(firstName, lastName);
-                    updatePlayersLabel();
-                    break;
-
-                }// 1st end of if
-
-
-            }// 2nd end of if
-
-        }// end of for loop
-
-    }// end of actionPerformed method
-}// end of AddPlayerButtonListener class
-
-    
- // listener for the add host button
-private class AddHostButtonListener implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-        String name = JOptionPane.showInputDialog("Enter host name:");
-        if (name != null && !name.trim().equals("")) {
-            String phrase = JOptionPane.showInputDialog("Enter a phrase for the players to guess:");
-            if (phrase != null && !phrase.trim().equals("")) {
-                host = new Hosts(name, "");
-                Hosts.setGamePhrase(phrase);
-                hostLabel.setText("Host: " + host.getFirstName());
-            } else {
-                JOptionPane.showMessageDialog(GUI.this, "Please enter a phrase for the players to guess.");
-
-
-            }// end of if/else
-        }// end  else "please enter a phrase"
-    }// end of AddHostButtonListener class
-}// end of AddHostButtonListener class
-
-    
-    // listener for the start game button
+ // listener for the start game button
     private class StartButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (Hosts.getGamePhrase() == null || ((String) Hosts.getGamePhrase()).trim().equals("")) {
