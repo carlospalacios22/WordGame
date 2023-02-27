@@ -1,4 +1,3 @@
-
 // import libraries
 import javax.swing.*;
 import java.awt.*;
@@ -24,9 +23,40 @@ public class GUI extends JFrame {
     
     public GUI() {
 
+
+
+
+
         // set the title of the window
         super("Word Guessing Game");
-        
+                                               
+        // create the menu bar
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+
+        // create the "Game" menu item
+        JMenu gameMenu = new JMenu("Game");
+        menuBar.add(gameMenu);
+// add menu items for starting a new game and quitting the current game
+        JMenuItem newGameMenuItem = new JMenuItem("New Game");
+        gameMenu.add(newGameMenuItem);
+        JMenuItem quitMenuItem = new JMenuItem("Quit");
+        gameMenu.add(quitMenuItem);
+
+        // create the "About" menu item
+        JMenu aboutMenu = new JMenu("About");
+        menuBar.add(aboutMenu);
+        // add a menu item for showing information about the game
+        JMenuItem infoMenuItem = new JMenuItem("Info");
+        aboutMenu.add(infoMenuItem);
+
+        // create the "Exit" menu item
+        JMenu exitMenu = new JMenu("Exit");
+        menuBar.add(exitMenu);
+        // add a menu item for exiting the game
+        JMenuItem exitMenuItem = new JMenuItem("Exit Game");
+        exitMenu.add(exitMenuItem);
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // set the size of the window if not it will be too small
@@ -145,7 +175,6 @@ private class AddHostButtonListener implements ActionListener {
     }// end of AddHostButtonListener class
 }// end of AddHostButtonListener class
 
-    
     // listener for the start game button
     private class StartButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
@@ -188,8 +217,6 @@ private class AddHostButtonListener implements ActionListener {
                 phraseLabel.setText(Phrases.getPlayingPhrase());
             } else {
                 System.exit(0);
-
-
             }// end of if/else
         }// end of hasPlayers method
     }// end of StartButtonListener class
@@ -205,12 +232,5 @@ private class AddHostButtonListener implements ActionListener {
             }
         }
         playersLabel.setText(playersText);
-
-
     }// end of updatePlayersLabel method
-    
- 
-
 }// end of GUI class
-
-
