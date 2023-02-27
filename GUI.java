@@ -17,9 +17,9 @@ public class GUI extends JFrame {
     private JLabel hostLabel;
     private JLabel phraseLabel;
     // buttons for adding a player and host
-
- 
     private JButton startButton;
+    
+
     
     public GUI() {
   // set the title of the window
@@ -55,8 +55,6 @@ newGameMenuItem.addActionListener(new ActionListener() {
     }
     
 });
-
-
         // create the "Add Player" menu item
         JMenuItem addPlayerMenuItem = new JMenuItem("Add Player");
         addPlayerMenuItem.setMnemonic(KeyEvent.VK_P);
@@ -141,16 +139,11 @@ newGameMenuItem.addActionListener(new ActionListener() {
         centerPanel.add(startButton);
         // add the center panel to the window
         add(centerPanel, BorderLayout.CENTER);
-        
- 
 
         // pack the window
         pack();
         // center the window
         setLocationRelativeTo(null);
-
-
-        
     }
     
  // listener for the start game button
@@ -219,4 +212,3 @@ newGameMenuItem.addActionListener(new ActionListener() {
  
 
 }// end of GUI class
-
