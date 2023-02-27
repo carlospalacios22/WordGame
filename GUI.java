@@ -107,12 +107,6 @@ newGameMenuItem.addActionListener(new ActionListener() {
         });
 
 
-
-
-
-
-
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // set the size of the window if not it will be too small
