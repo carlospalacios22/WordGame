@@ -20,7 +20,7 @@ public class GUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         // set the size of the window if not it will be too small
-        setPreferredSize(new Dimension(338, 263));
+        setPreferredSize(new Dimension(388, 295));
         setLayout(new BorderLayout());
 
         // Create the menu bar
@@ -158,12 +158,20 @@ public class GUI extends JFrame {
     startButton.setForeground(Color.BLUE);
     startButton.addActionListener(new StartButtonListener());
     centerPanel.add(startButton);
+
+    //Add a text box with scroll bars
     JTextArea resultArea = new JTextArea();
-resultArea.setEditable(false);
-resultArea.setLineWrap(true);
-resultArea.setWrapStyleWord(true);
-JScrollPane resultScrollPane = new JScrollPane(resultArea);
-add(resultScrollPane, BorderLayout.WEST);
+    resultArea.setEditable(false);
+    resultArea.setLineWrap(true);
+    resultArea.setWrapStyleWord(true);
+    JScrollPane resultScrollPane = new JScrollPane(resultArea);
+    resultScrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(20, Integer.MAX_VALUE));
+    resultScrollPane.getHorizontalScrollBar().setPreferredSize(new Dimension(Integer.MAX_VALUE, 20));
+    add(resultScrollPane, BorderLayout.WEST);
+    
+
+
+
 
     
 
@@ -181,6 +189,10 @@ add(resultScrollPane, BorderLayout.WEST);
 
 private class StartButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
+
+
+
+        
         if (Hosts.getGamePhrase() == null || ((String) Hosts.getGamePhrase()).trim().equals("")) {
             JOptionPane.showMessageDialog(GUI.this, "Please enter a game phrase.");
             return;
