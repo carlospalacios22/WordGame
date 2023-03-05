@@ -158,6 +158,14 @@ public class GUI extends JFrame {
     startButton.setForeground(Color.BLUE);
     startButton.addActionListener(new StartButtonListener());
     centerPanel.add(startButton);
+    JTextArea resultArea = new JTextArea();
+resultArea.setEditable(false);
+resultArea.setLineWrap(true);
+resultArea.setWrapStyleWord(true);
+JScrollPane resultScrollPane = new JScrollPane(resultArea);
+add(resultScrollPane, BorderLayout.WEST);
+
+    
 
     // Create the bottom panel for the menu bar
     JPanel bottomPanel = new JPanel(new GridLayout(1, 1));
