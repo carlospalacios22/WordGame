@@ -16,8 +16,7 @@
 #2/25/23
 No changes made to the branch 5 (still has all bugs) but added a GUI
 
-# to fix
-# Physical winnings are not showing 
-# Wrong answers cuase a error at the moment 
-# Players can keep guessing the same letter 
+#3/5/23
+
+need to work on adding a check box and messages box to have a scroll bar
 
