@@ -179,11 +179,11 @@ attributionMenuItem.addActionListener(new ActionListener() {
                 "money.jpg - Source: <a href='https://cdn.pixabay.com/photo/2013/07/18/10/56/pile-163497_960_720.jpg'>Money</a><br>" +
                 "tvprize.jpg - Source: <a href='https://cdn.pixabay.com/photo/2016/11/30/08/46/living-room-1872192_960_720.jpg'>Tv 65 inch</a>5"+
 
-                "Sound attributions:<br><br>" +
-                "background_music.wav - Source: <a href='sounds/background.wav'>Background Music</a></html>";
+                
 
                 //SOUND 
-                
+                "Sound attributions:<br><br>" +
+                "background_music.wav - Source: <a href='sounds/background.wav'>Background Music</a></html>";
 
              // Create the JEditorPane for displaying the attribution text with clickable links
         JEditorPane jep = new JEditorPane("text/html", attributionText);
