@@ -1,4 +1,7 @@
 import javax.swing.*;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -149,27 +152,51 @@ layoutMenuItem.addActionListener(new ActionListener() {
         JOptionPane.showMessageDialog(GUI.this, "This game was created using Java Swing.\n The layout is BorderLayout. This is to arrange the components in the GUI.\n A reason I used this layout is because the layouts provide a flexible platform\n for building GUI applications. Another good use of BorderLayout is that it\n makes everything simple to manage for example, by simply using\n south, north east and west and center. Code is also easier to put together and doesn't require anything complex. ");
     }
 });
-
 // Create the "Attribution" menu item
 JMenuItem attributionMenuItem = new JMenuItem("Attribution");
 attributionMenuItem.setMnemonic(KeyEvent.VK_T);
 aboutMenu.add(attributionMenuItem);
 attributionMenuItem.addActionListener(new ActionListener() {
     @Override
-    public void actionPerformed(ActionEvent e) {
-        String attributionText = "Image attributions:\n\n" +
-                "car.jpg - Source: [https://pixabay.com/photos/porsche-car-brake-lights-1851246/]\n" +
-                "chocolate.jpg - Source: [https://pixabay.com/photos/chocolate-abundance-sweets-candies-1914464/]\n" +
-                "cruiseprize.jpg - Source: [https://pixabay.com/photos/ship-port-paddle-steamer-steamship-50445/]\n" +
-                "money.jpg - Source: [https://pixabay.com/illustrations/pile-money-finance-currency-crisis-163497/]\n" +
-                "tvprize.jpg - Source: [https://pixabay.com/photos/living-room-tv-table-a-drawer-1872192/]";
-        JTextArea attributionTextArea = new JTextArea(attributionText);
-        attributionTextArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(attributionTextArea);
+    public void actionPerformed(ActionEvent picLink) {
+        // ADD the attribution text
+        String attributionText = "<html>Image attributions:<br><br>" +
+                "car.jpg - Source: <a href='https://cdn.pixabay.com/photo/2016/11/22/23/44/porsche-1851246_1280.jpg'>CAR/</a><br>" +
+                "chocolate.jpg - Source: <a href='https://cdn.pixabay.com/photo/2016/12/17/20/52/chocolate-1914464_960_720.jpg'>Chocolate</a><br>" +
+                "cruiseprize.jpg - Source: <a href='https://cdn.pixabay.com/photo/2012/06/21/06/35/ship-50445_960_720.jpg'>CruiseShip</a><br>" +
+                "money.jpg - Source: <a href='https://cdn.pixabay.com/photo/2013/07/18/10/56/pile-163497_960_720.jpg'>Money</a><br>" +
+                "tvprize.jpg - Source: <a href='https://cdn.pixabay.com/photo/2016/11/30/08/46/living-room-1872192_960_720.jpg'>Tv 65 inch</a></html>";
+
+                // Create the JEditorPane
+        JEditorPane attributionEditorPane = new JEditorPane("text/html", attributionText);
+        // Make the JEditorPane read-only
+        attributionEditorPane.setEditable(false);
+        // Add a hyperlink listener to the JEditorPane
+        attributionEditorPane.addHyperlinkListener(new HyperlinkListener() {
+            @Override
+            public void hyperlinkUpdate(HyperlinkEvent link) {
+                if (link.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                    JFrame imageFrame = new JFrame("Image");
+                    imageFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    imageFrame.setSize(640, 480);
+
+                    ImageIcon imageIcon = new ImageIcon(link.getURL());
+                    JLabel imageLabel = new JLabel(imageIcon);
+                    JScrollPane imageScrollPane = new JScrollPane(imageLabel);
+                    imageFrame.add(imageScrollPane);
+
+                    imageFrame.setLocationRelativeTo(GUI.this);
+                    imageFrame.setVisible(true);
+                }
+            }
+        });
+
+        JScrollPane scrollPane = new JScrollPane(attributionEditorPane);
         scrollPane.setPreferredSize(new Dimension(350, 200));
         JOptionPane.showMessageDialog(GUI.this, scrollPane, "Image Attributions", JOptionPane.INFORMATION_MESSAGE);
     }
 });
+
 
 
     // Create the top panel for the players and host
