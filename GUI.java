@@ -2,6 +2,10 @@ import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
+
+
+
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -67,7 +71,7 @@ public class GUI extends JFrame {
         gameMenu.add(newGameMenuItem);
         newGameMenuItem.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent newGamee) {
                 GUI newGame = new GUI();
                 newGame.setVisible(true);
                 dispose();
@@ -80,7 +84,7 @@ public class GUI extends JFrame {
         gameMenu.add(addPlayerMenuItem);
         addPlayerMenuItem.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent AddPlayer) {
                 for (int i = 0; i < players.length; i++) {
                     if (players[i] == null) {
                         String firstName = JOptionPane.showInputDialog("Enter player " + (i + 1) + " first name:");
@@ -137,7 +141,7 @@ aboutMenuItem.setMnemonic(KeyEvent.VK_A);
 aboutMenu.add(aboutMenuItem);
 aboutMenuItem.addActionListener(new ActionListener() {
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent aBoutGame) {
         JOptionPane.showMessageDialog(GUI.this, "WordGame Version 0.001\n\n");
     }
 });
@@ -225,7 +229,7 @@ attributionMenuItem.addActionListener(new ActionListener() {
     saveMessagesCheckBox.setToolTipText("Check this box to save messages between games.");
     saveMessagesCheckBox.addActionListener(new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent SaveMsgs) {
             saveMessages = saveMessagesCheckBox.isSelected();
         }
     });
@@ -267,7 +271,7 @@ attributionMenuItem.addActionListener(new ActionListener() {
 }
 
 private class StartButtonListener implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent StartBTN) {
 
 
 
