@@ -8,6 +8,7 @@ import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.io.IOException;
 
@@ -27,6 +28,7 @@ public class GUI extends JFrame {
     private JLabel prizeLabel;
     private ImageIcon carIcon, chocolateIcon, cruisePrizeIcon, moneyIcon, tvPrizeIcon;
     private JLabel prizeImageLabel;
+    
 
     public GUI() {
 
@@ -34,7 +36,12 @@ public class GUI extends JFrame {
         super("Word Guessing Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    
-  
+        // animates a image when the start button is pressed 
+        RotatingImagePanel rotatingImagePanel = new RotatingImagePanel("images/questionmark.png");
+        setContentPane(rotatingImagePanel);
+
+
+        
         carIcon = new ImageIcon("images/car.jpg");
         chocolateIcon = new ImageIcon("images/chocolate.jpg");
         cruisePrizeIcon = new ImageIcon("images/cruiseprize.jpg");
@@ -45,13 +52,6 @@ public class GUI extends JFrame {
         prizeImageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(prizeImageLabel, BorderLayout.SOUTH);
         
-
-
-
-
-
-
-
         prizeLabel = new JLabel();
         prizeLabel.setHorizontalAlignment(JLabel.CENTER);
         add(prizeLabel, BorderLayout.SOUTH);
@@ -226,7 +226,6 @@ attributionMenuItem.addActionListener(new ActionListener() {
     }
 });
 
-
     // Create the top panel for the players and host
     JPanel topPanel = new JPanel(new GridLayout(2, 1));
     add(topPanel, BorderLayout.NORTH);
@@ -263,7 +262,7 @@ attributionMenuItem.addActionListener(new ActionListener() {
     startButton = new JButton("Start Game");
     startButton.setFont(new Font("Arial", Font.BOLD, 18));
     startButton.setForeground(Color.BLUE);
-    startButton.addActionListener(new StartButtonListener());
+    startButton.addActionListener(new StartButtonListener(rotatingImagePanel));
     centerPanel.add(startButton);
 
     //Add a text box with scroll bars
@@ -276,12 +275,6 @@ attributionMenuItem.addActionListener(new ActionListener() {
     resultScrollPane.getHorizontalScrollBar().setPreferredSize(new Dimension(Integer.MAX_VALUE, 20));
     add(resultScrollPane, BorderLayout.WEST);
     
-
-
-
-
-    
-
     // Create the bottom panel for the menu bar
     JPanel bottomPanel = new JPanel(new GridLayout(1, 1));
     add(bottomPanel, BorderLayout.SOUTH);
@@ -292,6 +285,33 @@ attributionMenuItem.addActionListener(new ActionListener() {
     // Set the size of the window and center it on the screen
     pack();
     setLocationRelativeTo(null);
+}// end of GUI constructor
+
+public class RotatingImagePanel extends JPanel {
+    private Image backgroundImage;
+    private double rotationAngle;
+
+    public RotatingImagePanel(String imagePath) {
+        backgroundImage = new ImageIcon(imagePath).getImage();
+    }
+
+    public void setRotationAngle(double rotationAngle) {
+        this.rotationAngle = rotationAngle;
+        repaint();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g.create();
+        AffineTransform transform = new AffineTransform();
+        int x = (getWidth() - backgroundImage.getWidth(null)) / 2;
+        int y = (getHeight() - backgroundImage.getHeight(null)) / 2;
+        transform.translate(x, y);
+        transform.rotate(Math.toRadians(rotationAngle), backgroundImage.getWidth(null) / 2, backgroundImage.getHeight(null) / 2);
+        g2d.drawImage(backgroundImage, transform, null);
+        g2d.dispose();
+    }
 }
 
 public static void playBackgroundMusic(String filePath) {
@@ -329,7 +349,32 @@ public class MediaPlayer {
 }
 
 
+
+
+
+
 private class StartButtonListener implements ActionListener {
+    private Timer timer;
+    private RotatingImagePanel rotatingImagePanel;
+
+    public StartButtonListener(RotatingImagePanel rotatingImagePanel) {
+        this.rotatingImagePanel = rotatingImagePanel;
+        timer = new Timer(50, new ActionListener() {
+            private double rotationAngle = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                rotationAngle += 1;
+                if (rotationAngle >= 360) {
+                    rotationAngle = 0;
+                }
+                rotatingImagePanel.setRotationAngle(rotationAngle);
+            }
+        });
+    }
+
+ 
+
     public void actionPerformed(ActionEvent StartBTN) {
 
 
@@ -377,9 +422,6 @@ private class StartButtonListener implements ActionListener {
         } else {
             System.exit(0);
         }
-  
-  
-  
         // When the correct word is guessed, update the prize image
             if (turn.takeTurn(players[currentPlayerIndex % 3], host)) {
                 String gamePhrase = Phrases.getPlayingPhrase();
@@ -387,12 +429,6 @@ private class StartButtonListener implements ActionListener {
             }
  
         }
-
-
-
-
-
-    
   // End of GUI class
 
 //Method to update the prize image
@@ -414,8 +450,6 @@ private class StartButtonListener implements ActionListener {
     
     
 
-    
-
 private void updatePlayersLabel() {
     String playersText = "Players: ";
     for (int i = 0; i < players.length; i++) {
@@ -424,12 +458,10 @@ private void updatePlayersLabel() {
         }
     }
     playersLabel.setText(playersText);
-
     
 }
 
 }
 
 }
-
 
