@@ -158,11 +158,11 @@ attributionMenuItem.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
         String attributionText = "Image attributions:\n\n" +
-                "car.jpg - Source: [image_source], License: [license_name]\n" +
-                "chocolate.jpg - Source: [image_source], License: [license_name]\n" +
-                "cruiseprize.jpg - Source: [image_source], License: [license_name]\n" +
-                "money.jpg - Source: [image_source], License: [license_name]\n" +
-                "tvprize.jpg - Source: [image_source], License: [license_name]";
+                "car.jpg - Source: [https://pixabay.com/photos/porsche-car-brake-lights-1851246/]\n" +
+                "chocolate.jpg - Source: [https://pixabay.com/photos/chocolate-abundance-sweets-candies-1914464/]\n" +
+                "cruiseprize.jpg - Source: [https://pixabay.com/photos/ship-port-paddle-steamer-steamship-50445/]\n" +
+                "money.jpg - Source: [https://pixabay.com/illustrations/pile-money-finance-currency-crisis-163497/]\n" +
+                "tvprize.jpg - Source: [https://pixabay.com/photos/living-room-tv-table-a-drawer-1872192/]";
         JTextArea attributionTextArea = new JTextArea(attributionText);
         attributionTextArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(attributionTextArea);
