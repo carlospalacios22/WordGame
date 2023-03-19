@@ -174,7 +174,9 @@ attributionMenuItem.addActionListener(new ActionListener() {
                 "chocolate.jpg - Source: <a href='https://cdn.pixabay.com/photo/2016/12/17/20/52/chocolate-1914464_960_720.jpg'>Chocolate</a><br>" +
                 "cruiseprize.jpg - Source: <a href='https://cdn.pixabay.com/photo/2012/06/21/06/35/ship-50445_960_720.jpg'>CruiseShip</a><br>" +
                 "money.jpg - Source: <a href='https://cdn.pixabay.com/photo/2013/07/18/10/56/pile-163497_960_720.jpg'>Money</a><br>" +
-                "tvprize.jpg - Source: <a href='https://cdn.pixabay.com/photo/2016/11/30/08/46/living-room-1872192_960_720.jpg'>Tv 65 inch</a></html>";
+                "tvprize.jpg - Source: <a href='https://cdn.pixabay.com/photo/2016/11/30/08/46/living-room-1872192_960_720.jpg'>Tv 65 inch</a>"+
+                "Sound attributions:<br><br>" +
+                "background_music.wav - Source: <a href='sounds/background.wav'>Background Music</a></html>";
 
                 // Create the JEditorPane
         JEditorPane attributionEditorPane = new JEditorPane("text/html", attributionText);
