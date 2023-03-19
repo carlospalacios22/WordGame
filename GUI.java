@@ -1,3 +1,4 @@
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -135,39 +136,39 @@ public class GUI extends JFrame {
             }
         });
 
-      // Create the "About" menu
-JMenu aboutMenu = new JMenu("About");
-aboutMenu.setMnemonic(KeyEvent.VK_A);
-menuBar.add(aboutMenu);
+        // Create the "About" menu
+        JMenu aboutMenu = new JMenu("About");
+        aboutMenu.setMnemonic(KeyEvent.VK_A);
+        menuBar.add(aboutMenu);
 
-// Create the "About" menu item
-JMenuItem aboutMenuItem = new JMenuItem("About WordGame");
-aboutMenuItem.setMnemonic(KeyEvent.VK_A);
-aboutMenu.add(aboutMenuItem);
-aboutMenuItem.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent aBoutGame) {
+        // Create the "About" menu item
+        JMenuItem aboutMenuItem = new JMenuItem("About WordGame");
+        aboutMenuItem.setMnemonic(KeyEvent.VK_A);
+        aboutMenu.add(aboutMenuItem);
+        aboutMenuItem.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent aBoutGame) {
         JOptionPane.showMessageDialog(GUI.this, "WordGame Version 0.001\n\n");
-    }
-});
+        }
+        });
 
-// Create the "Layout" menu item
-JMenuItem layoutMenuItem = new JMenuItem("Layout");
-layoutMenuItem.setMnemonic(KeyEvent.VK_L);
-aboutMenu.add(layoutMenuItem);
-layoutMenuItem.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
+        // Create the "Layout" menu item
+        JMenuItem layoutMenuItem = new JMenuItem("Layout");
+        layoutMenuItem.setMnemonic(KeyEvent.VK_L);
+        aboutMenu.add(layoutMenuItem);
+        layoutMenuItem.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
         JOptionPane.showMessageDialog(GUI.this, "This game was created using Java Swing.\n The layout is BorderLayout. This is to arrange the components in the GUI.\n A reason I used this layout is because the layouts provide a flexible platform\n for building GUI applications. Another good use of BorderLayout is that it\n makes everything simple to manage for example, by simply using\n south, north east and west and center. Code is also easier to put together and doesn't require anything complex. ");
-    }
-});
-// Create the "Attribution" menu item
-JMenuItem attributionMenuItem = new JMenuItem("Attribution");
-attributionMenuItem.setMnemonic(KeyEvent.VK_T);
-aboutMenu.add(attributionMenuItem);
-attributionMenuItem.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent picLink) {
+        }
+        });
+        // Create the "Attribution" menu item
+        JMenuItem attributionMenuItem = new JMenuItem("Attribution");
+        attributionMenuItem.setMnemonic(KeyEvent.VK_T);
+        aboutMenu.add(attributionMenuItem);
+        attributionMenuItem.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent picLink) {
         // ADD the attribution text
         String attributionText = "<html>Image attributions:<br><br>" +
         "car.jpg - Source: <a href='images/car.jpg'>CAR</a><br>" +
@@ -223,74 +224,76 @@ attributionMenuItem.addActionListener(new ActionListener() {
 
         // Display the JOptionPane
         JOptionPane.showMessageDialog(null, scrollPane, "Attribution", JOptionPane.PLAIN_MESSAGE);
-    }
-});
+        }
+        });
 
-    // Create the top panel for the players and host
-    JPanel topPanel = new JPanel(new GridLayout(2, 1));
-    add(topPanel, BorderLayout.NORTH);
+        // Create the top panel for the players and host
+        JPanel topPanel = new JPanel(new GridLayout(2, 1));
+        add(topPanel, BorderLayout.NORTH);
     
-    playersLabel = new JLabel("Players:");
-    topPanel.add(playersLabel);
+        playersLabel = new JLabel("Players:");
+        topPanel.add(playersLabel);
 
-    hostLabel = new JLabel("Host: " + host.getFirstName());
-    topPanel.add(hostLabel);
+        hostLabel = new JLabel("Host: " + host.getFirstName());
+        topPanel.add(hostLabel);
 
-    // Create the center panel for the phrase and start button
-    JPanel centerPanel = new JPanel(new GridLayout(2, 1));
-    add(centerPanel, BorderLayout.CENTER);
+        // Create the center panel for the phrase and start button
+        JPanel centerPanel = new JPanel(new GridLayout(2, 1));
+        add(centerPanel, BorderLayout.CENTER);
 
-    phraseLabel = new JLabel(Phrases.getPlayingPhrase(), SwingConstants.CENTER);
-    centerPanel.add(phraseLabel);
+        phraseLabel = new JLabel(Phrases.getPlayingPhrase(), SwingConstants.CENTER);
+        centerPanel.add(phraseLabel);
 
-    // Add the message area and checkbox
-    messageArea = new JTextArea();
-    messageScrollPane = new JScrollPane(messageArea);
-    add(messageScrollPane, BorderLayout.EAST);
+        // Add the message area and checkbox
+        messageArea = new JTextArea();
+        messageScrollPane = new JScrollPane(messageArea);
+        add(messageScrollPane, BorderLayout.EAST);
 
-    saveMessagesCheckBox = new JCheckBox("Save Messages");
-    saveMessagesCheckBox.setToolTipText("Check this box to save messages between games.");
-    saveMessagesCheckBox.addActionListener(new ActionListener() {
+        saveMessagesCheckBox = new JCheckBox("Save Messages");
+        saveMessagesCheckBox.setToolTipText("Check this box to save messages between games.");
+        saveMessagesCheckBox.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent SaveMsgs) {
             saveMessages = saveMessagesCheckBox.isSelected();
         }
-    });
-    centerPanel.add(saveMessagesCheckBox);
+        });
+        centerPanel.add(saveMessagesCheckBox);
 
-    // Add the start button
-    startButton = new JButton("Start Game");
-    startButton.setFont(new Font("Arial", Font.BOLD, 18));
-    startButton.setForeground(Color.BLUE);
-    startButton.addActionListener(new StartButtonListener(rotatingImagePanel));
-    centerPanel.add(startButton);
+        // Add the start button
+        startButton = new JButton("Start Game");
+        startButton.setFont(new Font("Arial", Font.BOLD, 18));
+        startButton.setForeground(Color.BLUE);
+        startButton.addActionListener(new StartButtonListener(rotatingImagePanel));
+        centerPanel.add(startButton);
 
-    //Add a text box with scroll bars
-    JTextArea resultArea = new JTextArea();
-    resultArea.setEditable(false);
-    resultArea.setLineWrap(true);
-    resultArea.setWrapStyleWord(true);
-    JScrollPane resultScrollPane = new JScrollPane(resultArea);
-    resultScrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(20, Integer.MAX_VALUE));
-    resultScrollPane.getHorizontalScrollBar().setPreferredSize(new Dimension(Integer.MAX_VALUE, 20));
-    add(resultScrollPane, BorderLayout.WEST);
+        //Add a text box with scroll bars
+        JTextArea resultArea = new JTextArea();
+        resultArea.setEditable(false);
+        resultArea.setLineWrap(true);
+        resultArea.setWrapStyleWord(true);
+        JScrollPane resultScrollPane = new JScrollPane(resultArea);
+        resultScrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(20, Integer.MAX_VALUE));
+        resultScrollPane.getHorizontalScrollBar().setPreferredSize(new Dimension(Integer.MAX_VALUE, 20));
+        add(resultScrollPane, BorderLayout.WEST);
     
-    // Create the bottom panel for the menu bar
-    JPanel bottomPanel = new JPanel(new GridLayout(1, 1));
-    add(bottomPanel, BorderLayout.SOUTH);
+        // Create the bottom panel for the menu bar
+        JPanel bottomPanel = new JPanel(new GridLayout(1, 1));
+        add(bottomPanel, BorderLayout.SOUTH);
 
-    // Add the menu bar to the JFrame
-    menuBar.add(gameMenu);
+        // Add the menu bar to the JFrame
+        menuBar.add(gameMenu);
 
-    // Set the size of the window and center it on the screen
-    pack();
-    setLocationRelativeTo(null);
-}// end of GUI constructor
+        // Set the size of the window and center it on the screen
+        pack();
+        setLocationRelativeTo(null);
+
+    
+    }// end of GUI constructor
 
 
 
-public static void playBackgroundMusic(String filePath) {
-    try {
+        public static void playBackgroundMusic(String filePath) {
+        try {
         File audioFile = new File(filePath);
         AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
         Clip clip = AudioSystem.getClip();
@@ -301,27 +304,28 @@ public static void playBackgroundMusic(String filePath) {
         // Prevent the program from closing before the audio is played
         Thread.sleep(10000);
 
-    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException backGroundM) {
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException backGroundM) {
         backGroundM.printStackTrace();
-    }
-}
+        }
+        
+        }//end of playBackgroundMusic method
 
-public class JFXPanel {
+         public class JFXPanel {
 
-}
+        }
 
 
-public class MediaPlayer {
+        public class MediaPlayer {
 
-    public static final String INDEFINITE = null;
+         public static final String INDEFINITE = null;
 
-    public void setCycleCount(String indefinite2) {
-    }
+         public void setCycleCount(String indefinite2) {
+         }
 
-    public void play() {
-    }
+         public void play() {
+            }
 
-}
+}//end of GUI class
 
 //rotates the image to animate the background when the start button is pressed 
 public class RotatingImagePanel extends JPanel {
@@ -465,4 +469,3 @@ private void updatePlayersLabel() {
 }
 
 }
-
