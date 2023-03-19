@@ -185,32 +185,28 @@ attributionMenuItem.addActionListener(new ActionListener() {
                 "Sound attributions:<br><br>" +
                 "background_music.wav - Source: <a href='sounds/background.wav'>Background Music</a></html>";
 
-             // Create the JEditorPane for displaying the attribution text with clickable links
+             // JEditorPane for displaying the attribution text with clickable links
         JEditorPane jep = new JEditorPane("text/html", attributionText);
         jep.setEditable(false);
         jep.addHyperlinkListener(new HyperlinkListener() {
             @Override
-            public void hyperlinkUpdate(HyperlinkEvent e) {
-                if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                    if (e.getDescription().equals("sounds/background.wav")) {
+            public void hyperlinkUpdate(HyperlinkEvent SoundBackground) {
+                if (SoundBackground.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                    if (SoundBackground.getDescription().equals("sounds/background.wav")) {
                         try {
                             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource("/sounds/background.wav"));
                             Clip clip = AudioSystem.getClip();
                             clip.open(audioInputStream);
                             clip.start();
 
-                            // Optional: You may add a JOptionPane to pause or stop the playback
+                            // Wait for the sound to finish playing
 
-                        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
-                            ex.printStackTrace();
+                        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException stopSound) {
+                            stopSound.printStackTrace();
                         }
                     } else {
-                        // Open the URL in the default browser
-                        try {
-                            Desktop.getDesktop().browse(e.getURL().toURI());
-                        } catch (IOException | URISyntaxException ex) {
-                            ex.printStackTrace();
-                        }
+                 
+                     
                     }
                 }
             }
