@@ -307,7 +307,7 @@ public class GUI extends JFrame {
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException backGroundM) {
         backGroundM.printStackTrace();
         }
-        
+
         }//end of playBackgroundMusic method
 
          public class JFXPanel {
@@ -357,7 +357,7 @@ public class RotatingImagePanel extends JPanel {
 }
 
 
-
+//other classes for the GUI class buttons and actions
 private class StartButtonListener implements ActionListener {
     private Timer timer;
     private RotatingImagePanel rotatingImagePanel;
