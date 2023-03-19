@@ -15,21 +15,31 @@ public class GUI extends JFrame {
     private JCheckBox saveMessagesCheckBox;
     private boolean saveMessages = false;
     private JLabel prizeLabel;
-    
+    private ImageIcon carIcon, chocolateIcon, cruisePrizeIcon, moneyIcon, tvPrizeIcon;
+    private JLabel prizeImageLabel;
+
     public GUI() {
         super("Word Guessing Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
 
-       //code to load the Pictures 
-        ImageIcon[] prizeImages = new ImageIcon[3];
-        for (int i = 0; i < 3; i++) {
-            try {
-                prizeImages[i] = new ImageIcon(getClass().getResource("/images/prize" + (i + 1) + ".png"));
-            } catch (NullPointerException e) {
-                System.err.println("Could not load image: prize" + (i + 1) + ".png");
-            }
-        }
+        carIcon = new ImageIcon("images/car.jpg");
+        chocolateIcon = new ImageIcon("images/chocolate.jpg");
+        cruisePrizeIcon = new ImageIcon("images/cruiseprize.jpg");
+        moneyIcon = new ImageIcon("images/money.jpg");
+        tvPrizeIcon = new ImageIcon("images/tvprize.jpg");
+        
+        prizeImageLabel = new JLabel();
+        prizeImageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(prizeImageLabel, BorderLayout.SOUTH);
+        
+
+
+
+
+
+
+
         prizeLabel = new JLabel();
         prizeLabel.setHorizontalAlignment(JLabel.CENTER);
         add(prizeLabel, BorderLayout.SOUTH);
@@ -86,6 +96,9 @@ public class GUI extends JFrame {
                         }
                     }
                 }
+            }
+
+            private void updatePlayersLabel() {
             }
         });
 
@@ -254,14 +267,40 @@ private class StartButtonListener implements ActionListener {
   
   
   
-  
-  
-    }
+        // When the correct word is guessed, update the prize image
+            if (turn.takeTurn(players[currentPlayerIndex % 3], host)) {
+                String gamePhrase = Phrases.getPlayingPhrase();
+                updatePrizeImage(gamePhrase);
+            }
+ 
+        }
+
+
 
 
 
     
-}
+  // End of GUI class
+
+//Method to update the prize image
+    private void updatePrizeImage(String guessedWord) {
+        if (guessedWord.equalsIgnoreCase("car")) {
+            prizeImageLabel.setIcon(carIcon);
+        } else if (guessedWord.equalsIgnoreCase("chocolate")) {
+            prizeImageLabel.setIcon(chocolateIcon);
+        } else if (guessedWord.equalsIgnoreCase("cruise")) {
+            prizeImageLabel.setIcon(cruisePrizeIcon);
+        } else if (guessedWord.equalsIgnoreCase("money")) {
+            prizeImageLabel.setIcon(moneyIcon);
+        } else if (guessedWord.equalsIgnoreCase("tv")) {
+            prizeImageLabel.setIcon(tvPrizeIcon);
+        } else {
+            prizeImageLabel.setIcon(null);
+        }
+    }
+    
+    
+
 
 
 private void updatePlayersLabel() {
@@ -272,6 +311,13 @@ private void updatePlayersLabel() {
         }
     }
     playersLabel.setText(playersText);
+
+    
 }
 
 }
+
+}
+
+
+
