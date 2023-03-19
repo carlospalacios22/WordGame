@@ -333,7 +333,7 @@ private class StartButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent StartBTN) {
 
 
-        playBackgroundMusic("sounds/BackgroundMusic.wav");
+        playBackgroundMusic("sounds/background.wav");
         
         if (Hosts.getGamePhrase() == null || ((String) Hosts.getGamePhrase()).trim().equals("")) {
             JOptionPane.showMessageDialog(GUI.this, "Please enter a game phrase.");
