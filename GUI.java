@@ -14,11 +14,27 @@ public class GUI extends JFrame {
     private JScrollPane messageScrollPane;
     private JCheckBox saveMessagesCheckBox;
     private boolean saveMessages = false;
+    private JLabel prizeLabel;
     
     public GUI() {
         super("Word Guessing Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+
+       //code to load the Pictures 
+        ImageIcon[] prizeImages = new ImageIcon[3];
+        for (int i = 0; i < 3; i++) {
+            try {
+                prizeImages[i] = new ImageIcon(getClass().getResource("/images/prize" + (i + 1) + ".png"));
+            } catch (NullPointerException e) {
+                System.err.println("Could not load image: prize" + (i + 1) + ".png");
+            }
+        }
+        prizeLabel = new JLabel();
+        prizeLabel.setHorizontalAlignment(JLabel.CENTER);
+        add(prizeLabel, BorderLayout.SOUTH);
+        
+
         // set the size of the window if not it will be too small
         setPreferredSize(new Dimension(388, 295));
         setLayout(new BorderLayout());
@@ -235,8 +251,18 @@ private class StartButtonListener implements ActionListener {
         } else {
             System.exit(0);
         }
+  
+  
+  
+  
+  
     }
+
+
+
+    
 }
+
 
 private void updatePlayersLabel() {
     String playersText = "Players: ";
