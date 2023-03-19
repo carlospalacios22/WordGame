@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 
 public class GUI extends JFrame {
@@ -176,35 +177,51 @@ attributionMenuItem.addActionListener(new ActionListener() {
                 "chocolate.jpg - Source: <a href='https://cdn.pixabay.com/photo/2016/12/17/20/52/chocolate-1914464_960_720.jpg'>Chocolate</a><br>" +
                 "cruiseprize.jpg - Source: <a href='https://cdn.pixabay.com/photo/2012/06/21/06/35/ship-50445_960_720.jpg'>CruiseShip</a><br>" +
                 "money.jpg - Source: <a href='https://cdn.pixabay.com/photo/2013/07/18/10/56/pile-163497_960_720.jpg'>Money</a><br>" +
-                "tvprize.jpg - Source: <a href='https://cdn.pixabay.com/photo/2016/11/30/08/46/living-room-1872192_960_720.jpg'>Tv 65 inch</a></html>";
+                "tvprize.jpg - Source: <a href='https://cdn.pixabay.com/photo/2016/11/30/08/46/living-room-1872192_960_720.jpg'>Tv 65 inch</a>5"+
 
-                // Create the JEditorPane
-        JEditorPane attributionEditorPane = new JEditorPane("text/html", attributionText);
-        // Make the JEditorPane read-only
-        attributionEditorPane.setEditable(false);
-        // Add a hyperlink listener to the JEditorPane
-        attributionEditorPane.addHyperlinkListener(new HyperlinkListener() {
+                "Sound attributions:<br><br>" +
+                "background_music.wav - Source: <a href='sounds/background.wav'>Background Music</a></html>";
+
+                //SOUND 
+                
+
+             // Create the JEditorPane for displaying the attribution text with clickable links
+        JEditorPane jep = new JEditorPane("text/html", attributionText);
+        jep.setEditable(false);
+        jep.addHyperlinkListener(new HyperlinkListener() {
             @Override
-            public void hyperlinkUpdate(HyperlinkEvent link) {
-                if (link.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                    JFrame imageFrame = new JFrame("Image");
-                    imageFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    imageFrame.setSize(640, 480);
+            public void hyperlinkUpdate(HyperlinkEvent e) {
+                if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                    if (e.getDescription().equals("sounds/background.wav")) {
+                        try {
+                            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource("/sounds/background.wav"));
+                            Clip clip = AudioSystem.getClip();
+                            clip.open(audioInputStream);
+                            clip.start();
 
-                    ImageIcon imageIcon = new ImageIcon(link.getURL());
-                    JLabel imageLabel = new JLabel(imageIcon);
-                    JScrollPane imageScrollPane = new JScrollPane(imageLabel);
-                    imageFrame.add(imageScrollPane);
+                            // Optional: You may add a JOptionPane to pause or stop the playback
 
-                    imageFrame.setLocationRelativeTo(GUI.this);
-                    imageFrame.setVisible(true);
+                        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        // Open the URL in the default browser
+                        try {
+                            Desktop.getDesktop().browse(e.getURL().toURI());
+                        } catch (IOException | URISyntaxException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
                 }
             }
         });
 
-        JScrollPane scrollPane = new JScrollPane(attributionEditorPane);
-        scrollPane.setPreferredSize(new Dimension(350, 200));
-        JOptionPane.showMessageDialog(GUI.this, scrollPane, "Image Attributions", JOptionPane.INFORMATION_MESSAGE);
+        // Add the JEditorPane to the JScrollPane
+        JScrollPane scrollPane = new JScrollPane(jep);
+        scrollPane.setPreferredSize(new Dimension(350, 220));
+
+        // Display the JOptionPane
+        JOptionPane.showMessageDialog(null, scrollPane, "Attribution", JOptionPane.PLAIN_MESSAGE);
     }
 });
 
