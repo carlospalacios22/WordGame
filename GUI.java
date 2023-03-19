@@ -357,12 +357,12 @@ public class RotatingImagePanel extends JPanel {
 }
 
 
-//other classes for the GUI class buttons and actions
-private class StartButtonListener implements ActionListener {
-    private Timer timer;
-    private RotatingImagePanel rotatingImagePanel;
+        //other classes for the GUI class buttons and actions
+        private class StartButtonListener implements ActionListener {
+        private Timer timer;
+        private RotatingImagePanel rotatingImagePanel;
 
-    public StartButtonListener(RotatingImagePanel rotatingImagePanel) {
+        public StartButtonListener(RotatingImagePanel rotatingImagePanel) {
         this.rotatingImagePanel = rotatingImagePanel;
         timer = new Timer(50, new ActionListener() {
             private double rotationAngle = 0;
@@ -375,12 +375,12 @@ private class StartButtonListener implements ActionListener {
                 }
                 rotatingImagePanel.setRotationAngle(rotationAngle);
             }
-        });
-    }
+         });
+        }
 
  
 
-    public void actionPerformed(ActionEvent StartBTN) {
+        public void actionPerformed(ActionEvent StartBTN) {
 
 
         playBackgroundMusic("sounds/background.wav");
@@ -434,10 +434,9 @@ private class StartButtonListener implements ActionListener {
             }
  
         }
-  // End of GUI class
-
-//Method to update the prize image
-    private void updatePrizeImage(String guessedWord) {
+  
+        //Method to update the prize image
+        private void updatePrizeImage(String guessedWord) {
         if (guessedWord.equalsIgnoreCase("car")) {
             prizeImageLabel.setIcon(carIcon);
         } else if (guessedWord.equalsIgnoreCase("chocolate")) {
@@ -455,7 +454,7 @@ private class StartButtonListener implements ActionListener {
     
     
 
-private void updatePlayersLabel() {
+    private void updatePlayersLabel() {
     String playersText = "Players: ";
     for (int i = 0; i < players.length; i++) {
         if (players[i] != null) {
@@ -464,8 +463,8 @@ private void updatePlayersLabel() {
     }
     playersLabel.setText(playersText);
     
-}
+        }
 
-}
+    }//end of StartButtonListener class
 
-}
+}//end of GUI class
