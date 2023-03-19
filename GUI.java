@@ -12,7 +12,7 @@ import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.io.IOException;
 
-
+//Start of GUI 
 public class GUI extends JFrame {
     
     private Players[] players = new Players[3];
@@ -36,7 +36,7 @@ public class GUI extends JFrame {
         super("Word Guessing Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    
-        // animates a image when the start button is pressed **NOT WORKING PROPERLY 
+        // animates a image when the start button is pressed ***NOT WORKING PROPERLY***** 
         RotatingImagePanel rotatingImagePanel = new RotatingImagePanel("images/questionmark.png");
         setContentPane(rotatingImagePanel);
 
