@@ -288,7 +288,7 @@ public class GUI extends JFrame {
         setLocationRelativeTo(null);
 
     
-    }// end of GUI constructor
+        }// end of GUI constructor
 
 
 
@@ -325,25 +325,25 @@ public class GUI extends JFrame {
          public void play() {
             }
 
-}//end of GUI class
+        }  //end of MediaPlayer class
 
-//rotates the image to animate the background when the start button is pressed 
-public class RotatingImagePanel extends JPanel {
-    private Image backgroundImage;
-    private double rotationAngle;
+        //rotates the image to animate the background when the start button is pressed 
+        public class RotatingImagePanel extends JPanel {
+        private Image backgroundImage;
+        private double rotationAngle;
 
-    public RotatingImagePanel(String imagePath) {
+        public RotatingImagePanel(String imagePath) {
         backgroundImage = new ImageIcon(imagePath).getImage();
         setRotationAngle(0);
-    }
+        }
 
-    public void setRotationAngle(double rotationAngle) {
+        public void setRotationAngle(double rotationAngle) {
         this.rotationAngle = rotationAngle;
         repaint();
-    }
+         }
 
-    @Override
-    protected void paintComponent(Graphics g) {
+         @Override
+        protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
         AffineTransform transform = new AffineTransform();
@@ -353,8 +353,8 @@ public class RotatingImagePanel extends JPanel {
         transform.rotate(Math.toRadians(rotationAngle), backgroundImage.getWidth(null) / 2, backgroundImage.getHeight(null) / 2);
         g2d.drawImage(backgroundImage, transform, null);
         g2d.dispose();
-    }
-}
+        }//end of paintComponent method
+        }//end of RotatingImagePanel class
 
 
         //other classes for the GUI class buttons and actions
@@ -374,8 +374,8 @@ public class RotatingImagePanel extends JPanel {
                     rotationAngle = 0;
                 }
                 rotatingImagePanel.setRotationAngle(rotationAngle);
-            }
-         });
+                }
+            });
         }
 
  
@@ -388,7 +388,7 @@ public class RotatingImagePanel extends JPanel {
         if (Hosts.getGamePhrase() == null || ((String) Hosts.getGamePhrase()).trim().equals("")) {
             JOptionPane.showMessageDialog(GUI.this, "Please enter a game phrase.");
             return;
-        }
+         }
 
         Phrases.setGamePhrase(Hosts.getGamePhrase());
 
@@ -398,19 +398,19 @@ public class RotatingImagePanel extends JPanel {
                 hasPlayers = true;
                 break;
             }
-        }
+            }
 
         if (!hasPlayers) {
             JOptionPane.showMessageDialog(GUI.this, "Please add at least one player.");
             return;
        
-        }
+         }
 
         Turn turn = new Turn(null);
         int currentPlayerIndex = 0;
         while (!turn.takeTurn(players[currentPlayerIndex % 3], host)) {
             currentPlayerIndex++;
-        }
+            }
 
         int answer = JOptionPane.showConfirmDialog(GUI.this, "Would you like to play again?", "Play Again?", JOptionPane.YES_NO_OPTION);
         if (answer == JOptionPane.YES_OPTION) {
@@ -424,16 +424,17 @@ public class RotatingImagePanel extends JPanel {
             if (!saveMessages) {
                 messageArea.setText("");
             }
-        } else {
+            } 
+            else {
             System.exit(0);
-        }
+             }
         // When the correct word is guessed, update the prize image
             if (turn.takeTurn(players[currentPlayerIndex % 3], host)) {
                 String gamePhrase = Phrases.getPlayingPhrase();
                 updatePrizeImage(gamePhrase);
             }
  
-        }
+            }
   
         //Method to update the prize image
         private void updatePrizeImage(String guessedWord) {
