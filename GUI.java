@@ -194,8 +194,8 @@ attributionMenuItem.addActionListener(new ActionListener() {
                             Clip clip = AudioSystem.getClip();
                             clip.open(audioInputStream);
                             clip.start();
-                        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
-                            ex.printStackTrace();
+                        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException soundPlay) {
+                            soundPlay.printStackTrace();
                         }
                     } else {
                         File imageFile = new File(path);
