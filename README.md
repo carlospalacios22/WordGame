@@ -20,3 +20,8 @@ No changes made to the branch 5 (still has all bugs) but added a GUI
 
 need to work on adding a check box and messages box to have a scroll bar
 
+3/17/2023 3/18/2023
+
+Sound works on the star game button 
+
+the image animation does not show and as of now cannot figure out how to make it be on the background.  :(
