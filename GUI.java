@@ -123,31 +123,54 @@ public class GUI extends JFrame {
             }
         });
 
-        // Create the "About" menu
-        JMenu aboutMenu = new JMenu("About");
-        aboutMenu.setMnemonic(KeyEvent.VK_A);
-        menuBar.add(aboutMenu);
-            // Create the "About" menu item
-    JMenuItem aboutMenuItem = new JMenuItem("About WordGame");
-    aboutMenuItem.setMnemonic(KeyEvent.VK_A);
-    aboutMenu.add(aboutMenuItem);
-    aboutMenuItem.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(GUI.this, "WordGame Version 0.001\n\n");
-        }
-    });
+      // Create the "About" menu
+JMenu aboutMenu = new JMenu("About");
+aboutMenu.setMnemonic(KeyEvent.VK_A);
+menuBar.add(aboutMenu);
 
-    // Create the "Layout" menu item
-    JMenuItem layoutMenuItem = new JMenuItem("Layout");
-    layoutMenuItem.setMnemonic(KeyEvent.VK_L);
-    aboutMenu.add(layoutMenuItem);
-    layoutMenuItem.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(GUI.this, "This game was created using Java Swing.\n The layout is BorderLayout. This is to arrange the components in the GUI.\n A reason I used this layout is because the layouts provide a flexible platform\n for building GUI applications. Another good use of BorderLayout is that it\n makes everything simple to manage for example, by simply using\n south, north east and west and center. Code is also easier to put together and doesn't require anything complex. ");
-        }
-    });
+// Create the "About" menu item
+JMenuItem aboutMenuItem = new JMenuItem("About WordGame");
+aboutMenuItem.setMnemonic(KeyEvent.VK_A);
+aboutMenu.add(aboutMenuItem);
+aboutMenuItem.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(GUI.this, "WordGame Version 0.001\n\n");
+    }
+});
+
+// Create the "Layout" menu item
+JMenuItem layoutMenuItem = new JMenuItem("Layout");
+layoutMenuItem.setMnemonic(KeyEvent.VK_L);
+aboutMenu.add(layoutMenuItem);
+layoutMenuItem.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(GUI.this, "This game was created using Java Swing.\n The layout is BorderLayout. This is to arrange the components in the GUI.\n A reason I used this layout is because the layouts provide a flexible platform\n for building GUI applications. Another good use of BorderLayout is that it\n makes everything simple to manage for example, by simply using\n south, north east and west and center. Code is also easier to put together and doesn't require anything complex. ");
+    }
+});
+
+// Create the "Attribution" menu item
+JMenuItem attributionMenuItem = new JMenuItem("Attribution");
+attributionMenuItem.setMnemonic(KeyEvent.VK_T);
+aboutMenu.add(attributionMenuItem);
+attributionMenuItem.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String attributionText = "Image attributions:\n\n" +
+                "car.jpg - Source: [image_source], License: [license_name]\n" +
+                "chocolate.jpg - Source: [image_source], License: [license_name]\n" +
+                "cruiseprize.jpg - Source: [image_source], License: [license_name]\n" +
+                "money.jpg - Source: [image_source], License: [license_name]\n" +
+                "tvprize.jpg - Source: [image_source], License: [license_name]";
+        JTextArea attributionTextArea = new JTextArea(attributionText);
+        attributionTextArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(attributionTextArea);
+        scrollPane.setPreferredSize(new Dimension(350, 200));
+        JOptionPane.showMessageDialog(GUI.this, scrollPane, "Image Attributions", JOptionPane.INFORMATION_MESSAGE);
+    }
+});
+
 
     // Create the top panel for the players and host
     JPanel topPanel = new JPanel(new GridLayout(2, 1));
