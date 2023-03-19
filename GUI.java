@@ -183,12 +183,20 @@ attributionMenuItem.addActionListener(new ActionListener() {
         jep.setEditable(false);
         jep.addHyperlinkListener(new HyperlinkListener() {
             @Override
-            public void hyperlinkUpdate(HyperlinkEvent e) {
-                if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                    String path = e.getDescription();
+            public void hyperlinkUpdate(HyperlinkEvent hyperLinks) {
+                if (hyperLinks.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                    String path = hyperLinks.getDescription();
         
                     if (path.equals("sounds/background.wav")) {
-                        // Sound playback code
+                        // Play the sound file, if it exists
+                        try {
+                            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(path));
+                            Clip clip = AudioSystem.getClip();
+                            clip.open(audioInputStream);
+                            clip.start();
+                        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                            ex.printStackTrace();
+                        }
                     } else {
                         File imageFile = new File(path);
                         if (imageFile.exists()) {
