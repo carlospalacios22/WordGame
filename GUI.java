@@ -36,7 +36,7 @@ public class GUI extends JFrame {
         super("Word Guessing Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    
-        // animates a image when the start button is pressed 
+        // animates a image when the start button is pressed **NOT WORKING PROPERLY 
         RotatingImagePanel rotatingImagePanel = new RotatingImagePanel("images/questionmark.png");
         setContentPane(rotatingImagePanel);
 
@@ -287,32 +287,7 @@ attributionMenuItem.addActionListener(new ActionListener() {
     setLocationRelativeTo(null);
 }// end of GUI constructor
 
-public class RotatingImagePanel extends JPanel {
-    private Image backgroundImage;
-    private double rotationAngle;
 
-    public RotatingImagePanel(String imagePath) {
-        backgroundImage = new ImageIcon(imagePath).getImage();
-    }
-
-    public void setRotationAngle(double rotationAngle) {
-        this.rotationAngle = rotationAngle;
-        repaint();
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g.create();
-        AffineTransform transform = new AffineTransform();
-        int x = (getWidth() - backgroundImage.getWidth(null)) / 2;
-        int y = (getHeight() - backgroundImage.getHeight(null)) / 2;
-        transform.translate(x, y);
-        transform.rotate(Math.toRadians(rotationAngle), backgroundImage.getWidth(null) / 2, backgroundImage.getHeight(null) / 2);
-        g2d.drawImage(backgroundImage, transform, null);
-        g2d.dispose();
-    }
-}
 
 public static void playBackgroundMusic(String filePath) {
     try {
@@ -348,8 +323,34 @@ public class MediaPlayer {
 
 }
 
+//rotates the image to animate the background when the start button is pressed 
+public class RotatingImagePanel extends JPanel {
+    private Image backgroundImage;
+    private double rotationAngle;
 
+    public RotatingImagePanel(String imagePath) {
+        backgroundImage = new ImageIcon(imagePath).getImage();
+        setRotationAngle(0);
+    }
 
+    public void setRotationAngle(double rotationAngle) {
+        this.rotationAngle = rotationAngle;
+        repaint();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g.create();
+        AffineTransform transform = new AffineTransform();
+        int x = (getWidth() - backgroundImage.getWidth(null)) / 2;
+        int y = (getHeight() - backgroundImage.getHeight(null)) / 2;
+        transform.translate(x, y);
+        transform.rotate(Math.toRadians(rotationAngle), backgroundImage.getWidth(null) / 2, backgroundImage.getHeight(null) / 2);
+        g2d.drawImage(backgroundImage, transform, null);
+        g2d.dispose();
+    }
+}
 
 
 
@@ -363,7 +364,7 @@ private class StartButtonListener implements ActionListener {
             private double rotationAngle = 0;
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent rottatimage) {
                 rotationAngle += 1;
                 if (rotationAngle >= 360) {
                     rotationAngle = 0;
