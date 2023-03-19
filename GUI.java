@@ -1,13 +1,18 @@
+
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
-
-
-
-
-
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+
 
 public class GUI extends JFrame {
     
@@ -26,10 +31,12 @@ public class GUI extends JFrame {
     private JLabel prizeImageLabel;
 
     public GUI() {
+
+        
         super("Word Guessing Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-
+   
+  
         carIcon = new ImageIcon("images/car.jpg");
         chocolateIcon = new ImageIcon("images/chocolate.jpg");
         cruisePrizeIcon = new ImageIcon("images/cruiseprize.jpg");
@@ -270,11 +277,46 @@ attributionMenuItem.addActionListener(new ActionListener() {
     setLocationRelativeTo(null);
 }
 
+public static void playBackgroundMusic(String filePath) {
+    try {
+        File audioFile = new File(filePath);
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioStream);
+        clip.start();
+        clip.loop(Clip.LOOP_CONTINUOUSLY); // Loop the background music continuously
+
+        // Prevent the program from closing before the audio is played
+        Thread.sleep(10000);
+
+    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException backGroundM) {
+        backGroundM.printStackTrace();
+    }
+}
+
+public class JFXPanel {
+
+}
+
+
+public class MediaPlayer {
+
+    public static final String INDEFINITE = null;
+
+    public void setCycleCount(String indefinite2) {
+    }
+
+    public void play() {
+    }
+
+}
+
+
 private class StartButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent StartBTN) {
 
 
-
+        playBackgroundMusic("sounds/BackgroundMusic.wav");
         
         if (Hosts.getGamePhrase() == null || ((String) Hosts.getGamePhrase()).trim().equals("")) {
             JOptionPane.showMessageDialog(GUI.this, "Please enter a game phrase.");
@@ -355,7 +397,7 @@ private class StartButtonListener implements ActionListener {
     
     
 
-
+    
 
 private void updatePlayersLabel() {
     String playersText = "Players: ";
